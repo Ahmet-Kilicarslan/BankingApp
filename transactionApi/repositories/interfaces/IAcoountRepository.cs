@@ -3,9 +3,9 @@ namespace TransactionApi.Repositories.Interfaces;
 
 public interface IAccountRepository{
 
-Task<Account?> GetById(int Id);
+Task<Account?> GetAccountById(int Id);
 
-Task AddAsync(Account account);
+Task CreateAccount(Account account);
 
 Task SaveChangesAsync();
 

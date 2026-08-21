@@ -4,18 +4,18 @@ using TransactionApi.Services.Interfaces;
 
 namespace TransactionApi.Services;
 
-public class Transactionservice : ITransactionService{
+public class TransactionService : ITransactionService{
 
 private readonly ITransactionRepository _transactionRepository;
 
-public TransaxctionService(TransactionRepository transactionRepository){
+public TransactionService(ITransactionRepository transactionRepository){
 
     _transactionRepository= transactionRepository;
 }
 
 public async Task<Transaction?> GetTransactionbyId(int Id){
  
- return await _transactionRepository.GetTransactionById(int Id);
+ return await _transactionRepository.GetTransactionById( Id);
 
 }
 

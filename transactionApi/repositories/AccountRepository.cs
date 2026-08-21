@@ -14,12 +14,12 @@ public AccountRepository( TransactionDbContext context){
     _context=context;
 }
 
-public async Task<Account?> GetById(int Id){
+public async Task<Account?> GetAccountById(int Id){
 
     return await _context.Accounts.FindAsync(Id);
 }
 
-public async Task AddAsync(Account account){
+public async Task CreateAccount(Account account){
 
      await  _context.AddAsync(account);
 }

@@ -23,6 +23,9 @@ namespace transaction.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AccountNo")
+                        .HasColumnType("INTEGER");
+
                     b.Property<decimal>("Balance")
                         .HasColumnType("TEXT");
 
@@ -77,6 +80,18 @@ namespace transaction.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TransactionTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Deposit"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Withdraw"
+                        });
                 });
 
             modelBuilder.Entity("TransactionApi.Models.Transaction", b =>

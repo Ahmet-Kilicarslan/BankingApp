@@ -7,6 +7,6 @@ public interface IAccountService{
 
 Task<Account?> GetAccountById(int Id);
 
-task<Account> CreateAccount(Account account);
+Task<Account> CreateAccount(Account account);
 
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ak0389\\Desktop\\Banker\\transactionApi\\transaction.csproj": {}
+    "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\transaction.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ak0389\\Desktop\\Banker\\transactionApi\\transaction.csproj": {
+    "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\transaction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ak0389\\Desktop\\Banker\\transactionApi\\transaction.csproj",
-        "projectName": "transaction",
-        "projectPath": "C:\\Users\\ak0389\\Desktop\\Banker\\transactionApi\\transaction.csproj",
+        "projectUniqueName": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\transaction.csproj",
+        "projectName": "transactionApi",
+        "projectPath": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\transaction.csproj",
         "packagesPath": "C:\\Users\\ak0389\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ak0389\\Desktop\\Banker\\transactionApi\\obj\\",
+        "outputPath": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,6 +65,10 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[10.0.11, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.22.0, )"
             }
           },
           "imports": [

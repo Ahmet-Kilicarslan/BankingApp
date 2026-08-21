@@ -4,7 +4,9 @@ namespace ClientApi.Repositories;
 
 public interface IClientRepository
 {
-    Task<Client?> getClientById(int Id);
+    Task<Client?> GetClientById(int Id);
+
+    Task<List<Client>> GetAllClients();
     
 
     Task CreateClient(Client Client);
