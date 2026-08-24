@@ -24,9 +24,8 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
 options.UseSqlite(builder.Configuration.GetConnectionString("TransactionDb"))
 );
 
-builder.Services.AddScoped<IAccountRepository,AccountRepository>();
 builder.Services.AddScoped<ITransactionRepository,TransactionRepository>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();

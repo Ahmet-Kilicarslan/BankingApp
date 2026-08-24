@@ -1,4 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using AccountApi.Models;
+namespace AccountApi.Data;
 
-namespace AccountApi.Models;
+public class AccountDbContext : DbContext
+{
 
+
+    public AccountDbContext(DbContextOptions<AccountDbContext> options) : base(options)
+    {
+    }
+
+    public DbSet<Account> Accounts { get; set; }
+}

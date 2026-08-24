@@ -1,6 +1,8 @@
 using System.Security.Principal;
 using AccountApi.Models;
-using AccountApi
+using AccountApi.Repositories.Interfaces;
+using AccountApi.Services.Interfaces;
+using AccountApi.Services;
 
 namespace TransactionApi.Services;
 
