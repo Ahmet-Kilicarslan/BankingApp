@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "C:\\Users\\ak0389\\source\\repos\\Banker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\dtos\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\dtos\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,32 +51,32 @@
       "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\dtos\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\dtos\\tokenresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\dtos\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|c:\\users\\ak0389\\source\\repos\\banker\\clientapi\\client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{689448A0-E242-F7AE-0CC6-719FDADEBC8A}|clientApi\\client.csproj|solutionrelative:clientapi\\client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\models\\transactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,20 +87,8 @@
       "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|c:\\users\\ak0389\\source\\repos\\banker\\transactionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBB5942D-95D7-719D-3A8D-C18AD037CCEF}|transactionApi\\transaction.csproj|solutionrelative:transactionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|solutionrelative:authapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC3C3F62-DD44-8AAA-D9A5-136649C4F0EB}|authApi\\authApi.csproj|c:\\users\\ak0389\\source\\repos\\banker\\authapi\\authapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -85,10 +113,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Models\\TokenRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:authApi\\Models\\TokenRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Controllers\\TokenController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:authApi\\Controllers\\TokenController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -98,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,20 +138,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Accountservice.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\Accountservice.cs",
-              "RelativeDocumentMoniker": "transactionApi\\services\\Accountservice.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\Accountservice.cs",
-              "RelativeToolTip": "transactionApi\\services\\Accountservice.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAswDMAAAAbAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ClientDto.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\ClientDto.cs",
+              "RelativeDocumentMoniker": "transactionApi\\models\\DTOs\\ClientDto.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\ClientDto.cs",
+              "RelativeToolTip": "transactionApi\\models\\DTOs\\ClientDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T12:12:33.02Z",
+              "WhenOpened": "2026-08-24T13:33:30.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "clientApi\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\Properties\\launchSettings.json",
+              "RelativeToolTip": "clientApi\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-24T13:32:42.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\Program.cs",
+              "RelativeDocumentMoniker": "transactionApi\\Program.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\Program.cs",
+              "RelativeToolTip": "transactionApi\\Program.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAmwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T08:47:24.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\appsettings.json",
+              "RelativeDocumentMoniker": "transactionApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\appsettings.json",
+              "RelativeToolTip": "transactionApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-24T08:07:22.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "TokenResponseDto.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\TokenResponseDto.cs",
               "RelativeDocumentMoniker": "transactionApi\\models\\DTOs\\TokenResponseDto.cs",
@@ -135,72 +198,181 @@
               "RelativeToolTip": "transactionApi\\models\\DTOs\\TokenResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T11:56:55.346Z"
+              "WhenOpened": "2026-08-24T11:56:55.346Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "TransactionController.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\controllers\\TransactionController.cs",
+              "RelativeDocumentMoniker": "transactionApi\\controllers\\TransactionController.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\controllers\\TransactionController.cs",
+              "RelativeToolTip": "transactionApi\\controllers\\TransactionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T13:19:55.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "transactionApi\\controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\controllers\\AccountController.cs",
+              "RelativeToolTip": "transactionApi\\controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T13:19:54.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\appsettings.json",
+              "RelativeDocumentMoniker": "clientApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\appsettings.json",
+              "RelativeToolTip": "clientApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-24T11:31:16.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TransactionDto.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\TransactionDto.cs",
+              "RelativeDocumentMoniker": "transactionApi\\models\\DTOs\\TransactionDto.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\TransactionDto.cs",
+              "RelativeToolTip": "transactionApi\\models\\DTOs\\TransactionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T12:00:47.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Accountservice.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\Accountservice.cs",
+              "RelativeDocumentMoniker": "transactionApi\\services\\Accountservice.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\Accountservice.cs",
+              "RelativeToolTip": "transactionApi\\services\\Accountservice.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwv0IAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T12:12:33.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "TokenService.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\TokenService.cs",
               "RelativeDocumentMoniker": "transactionApi\\services\\TokenService.cs",
               "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\services\\TokenService.cs",
               "RelativeToolTip": "transactionApi\\services\\TokenService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-24T11:54:50.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\appsettings.json",
-              "RelativeDocumentMoniker": "transactionApi\\appsettings.json",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\appsettings.json",
-              "RelativeToolTip": "transactionApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-24T08:07:22.062Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\appsettings.json",
-              "RelativeDocumentMoniker": "clientApi\\appsettings.json",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\appsettings.json",
-              "RelativeToolTip": "clientApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-24T11:31:16.641Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\appsettings.json",
               "RelativeDocumentMoniker": "authApi\\appsettings.json",
               "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\appsettings.json",
               "RelativeToolTip": "authApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-24T07:48:08.904Z"
+              "WhenOpened": "2026-08-24T07:48:08.904Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
+              "Title": "ClientController.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\controllers\\ClientController.cs",
+              "RelativeDocumentMoniker": "clientApi\\controllers\\ClientController.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\controllers\\ClientController.cs",
+              "RelativeToolTip": "clientApi\\controllers\\ClientController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAcwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T13:17:00.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\Program.cs",
               "RelativeDocumentMoniker": "clientApi\\Program.cs",
               "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\Program.cs",
               "RelativeToolTip": "clientApi\\Program.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAACIAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAmwEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T11:49:23.05Z"
+              "WhenOpened": "2026-08-24T11:49:23.05Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Program.cs",
+              "RelativeDocumentMoniker": "authApi\\Program.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Program.cs",
+              "RelativeToolTip": "authApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T07:49:09.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TokenController.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Controllers\\TokenController.cs",
+              "RelativeDocumentMoniker": "authApi\\Controllers\\TokenController.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Controllers\\TokenController.cs",
+              "RelativeToolTip": "authApi\\Controllers\\TokenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T11:40:10.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ClientService.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\services\\ClientService.cs",
+              "RelativeDocumentMoniker": "clientApi\\services\\ClientService.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\services\\ClientService.cs",
+              "RelativeToolTip": "clientApi\\services\\ClientService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T13:16:38.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "authApi\\Services\\TokenService.cs",
+              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Services\\TokenService.cs",
+              "RelativeToolTip": "authApi\\Services\\TokenService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAmwCwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T08:15:53.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "client.csproj",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\clientApi\\client.csproj",
               "RelativeDocumentMoniker": "clientApi\\client.csproj",
@@ -213,19 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TransactionDto.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\TransactionDto.cs",
-              "RelativeDocumentMoniker": "transactionApi\\models\\DTOs\\TransactionDto.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\DTOs\\TransactionDto.cs",
-              "RelativeToolTip": "transactionApi\\models\\DTOs\\TransactionDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T12:00:47.485Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "TransactionType.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\TransactionType.cs",
               "RelativeDocumentMoniker": "transactionApi\\models\\TransactionType.cs",
@@ -237,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "Transaction.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\models\\Transaction.cs",
               "RelativeDocumentMoniker": "transactionApi\\models\\Transaction.cs",
@@ -249,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 21,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "authApi\\Properties\\launchSettings.json",
@@ -261,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "TokenRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Models\\TokenRequestDto.cs",
               "RelativeDocumentMoniker": "authApi\\Models\\TokenRequestDto.cs",
@@ -273,43 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "TokenController.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Controllers\\TokenController.cs",
-              "RelativeDocumentMoniker": "authApi\\Controllers\\TokenController.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Controllers\\TokenController.cs",
-              "RelativeToolTip": "authApi\\Controllers\\TokenController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T11:40:10.336Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "authApi\\Services\\TokenService.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Services\\TokenService.cs",
-              "RelativeToolTip": "authApi\\Services\\TokenService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA1wBEAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T08:15:53.194Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\Program.cs",
-              "RelativeDocumentMoniker": "transactionApi\\Program.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\Program.cs",
-              "RelativeToolTip": "transactionApi\\Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T08:47:24.017Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 22,
               "Title": "authApi.csproj",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\authApi.csproj",
               "RelativeDocumentMoniker": "authApi\\authApi.csproj",
@@ -321,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "keyGen.csproj",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\keyGen\\keyGen.csproj",
               "RelativeDocumentMoniker": "keyGen\\keyGen.csproj",
@@ -333,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "transaction.csproj",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\transactionApi\\transaction.csproj",
               "RelativeDocumentMoniker": "transactionApi\\transaction.csproj",
@@ -345,19 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Program.cs",
-              "RelativeDocumentMoniker": "authApi\\Program.cs",
-              "ToolTip": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\Program.cs",
-              "RelativeToolTip": "authApi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T07:49:09.959Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\keyGen\\Program.cs",
               "RelativeDocumentMoniker": "keyGen\\Program.cs",
@@ -369,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\ak0389\\source\\repos\\Banker\\authApi\\appsettings.Development.json",
               "RelativeDocumentMoniker": "authApi\\appsettings.Development.json",
