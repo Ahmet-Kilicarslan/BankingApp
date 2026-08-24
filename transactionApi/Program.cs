@@ -38,6 +38,10 @@ builder.Services.AddHttpClient("ClientApi", client => {
     client.BaseAddress = new Uri(builder.Configuration["ClientApiUrl"]);
 });
 
+builder.Services.AddHttpClient("AuthApi", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["AuthApiUrl"]);
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -2,38 +2,29 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using TransactionApi.Models.DTOs;
 
 namespace TransactionApi.Services;
 
 public class TokenService
 {
 
-    private readonly IConfiguration _configuration;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public TokenService(IConfiguration configuration)
+    public TokenService(IHttpClientFactory httpClientFactory)
     {
-        _configuration = configuration;
+        _httpClientFactory = httpClientFactory;
     }
 
-
-    public string GenerateToken()
+    public async Task<string> GetTokenAsync()
     {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var httpClient = _httpClientFactory.CreateClient("AuthApi");
 
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var response = await httpClient.PostAsJsonAsync("/api/Token", new { clientId = "transaction-api" });
+        response.EnsureSuccessStatusCode();
 
-        var token = new JwtSecurityToken(
-            issuer: _configuration["Jwt:Issuer"],
-            audience: _configuration["Jwt:Audience"],
-            claims: new List<Claim>(),
-            expires: DateTime.UtcNow.AddMinutes(2),
-            signingCredentials:credentials
-
-
-            );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
-
+        var result = await response.Content.ReadFromJsonAsync<TokenResponseDTO>();
+        return result.Token;
     }
 
 

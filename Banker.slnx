@@ -1,8 +1,16 @@
 <Solution>
   <Folder Name="/clientApi/">
-    <Project Path="clientApi/client.csproj" />
+   <Project Path="clientApi/client.csproj" />
   </Folder>
   <Folder Name="/transactionApi/">
-    <Project Path="transactionApi/transaction.csproj" />
+   <Project Path="transactionApi/transaction.csproj" />
   </Folder>
+ <Folder Name="/authApi/">
+  <Project Path="authApi/authApi.csproj" />
+ </Folder>
+
+<Folder Name="/accountApi/">
+ <Project Path="accountApi/accountApi.csproj" Id="24a6aff1-5fe7-4a22-897b-d38d866908dc" />
+</Folder>
+ <Project Path="keyGen/keyGen.csproj" Id="b8ee05f0-8f58-4501-aa4d-8a57a589d8fa" />
 </Solution>

@@ -49,7 +49,7 @@ public class AccountService : IAccountService
 
         var httpCLient = _httpClientFactory.CreateClient("ClientApi");
 
-        var token = _tokenService.GenerateToken();
+        var token =  await _tokenService.GetTokenAsync();
 
         httpCLient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 

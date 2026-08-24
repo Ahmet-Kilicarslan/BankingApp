@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\clientApi",
-    "\\clientApi\\repositories"
+    "\\clientApi\\repositories",
+    "\\transactionApi",
+    "\\transactionApi\\controllers"
   ],
-  "SelectedNode": "\\clientApi\\repositories\\ClientRepository.cs",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
