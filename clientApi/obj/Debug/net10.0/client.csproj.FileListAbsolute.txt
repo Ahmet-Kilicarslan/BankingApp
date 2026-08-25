@@ -447,3 +447,4 @@ C:\Users\ak0389\source\repos\Banker\clientApi\obj\Debug\net10.0\refint\ClientApi
 C:\Users\ak0389\source\repos\Banker\clientApi\obj\Debug\net10.0\ClientApi.pdb
 C:\Users\ak0389\source\repos\Banker\clientApi\obj\Debug\net10.0\client.genruntimeconfig.cache
 C:\Users\ak0389\source\repos\Banker\clientApi\obj\Debug\net10.0\ref\ClientApi.dll
+C:\Users\ak0389\source\repos\Banker\clientApi\obj\Debug\net10.0\client.sourcelink.json

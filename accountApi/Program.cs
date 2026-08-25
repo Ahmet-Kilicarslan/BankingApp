@@ -4,8 +4,10 @@ using AccountApi.Repositories.Interfaces;
 using AccountApi.Services;
 using AccountApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using TransactionApi.Repositories;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,23 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+    var rsa = RSA.Create();
+    rsa.ImportSubjectPublicKeyInfo(Convert.FromBase64String(builder.Configuration["Jwt:PublicKey"]), out _);
+
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new RsaSecurityKey(rsa)
+    };
+});
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddHttpClient("ClientApi", client => {
     client.BaseAddress = new Uri(builder.Configuration["ClientApiUrl"]);

@@ -1,11 +1,10 @@
 
 
 
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
+
 using AccountApi.Models.DTOs;
+using System.Net.Http.Json;
+
 
 namespace AccountApi.Services;
 
@@ -21,13 +20,29 @@ public class TokenService
 
     public async Task<string> GetTokenAsync()
     {
+        /* var httpClient = _httpClientFactory.CreateClient("AuthApi");
+
+         var response = await httpClient.PostAsJsonAsync("/api/Token", new { CallerId = "account-api" });
+
+         response.EnsureSuccessStatusCode();
+
+         var result = await response.Content.ReadFromJsonAsync<TokenResponseDTO>();
+         return result.Token;*/
+
         var httpClient = _httpClientFactory.CreateClient("AuthApi");
 
-        var response = await httpClient.PostAsJsonAsync("/api/Token", new { clientId = "transaction-api" });
+        var response = await httpClient.PostAsJsonAsync(
+            "/api/Token",
+            new { CallerId = "account-api" }
+        );
+
+
         response.EnsureSuccessStatusCode();
 
         var result = await response.Content.ReadFromJsonAsync<TokenResponseDTO>();
+
         return result.Token;
+
     }
 
 

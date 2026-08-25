@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TransactionApi.Services.Interfaces;
 using TransactionApi.Models;
+using TransactionApi.Models.DTOs;
 
 namespace TransactionApi.Controllers;
 
@@ -31,10 +32,10 @@ public class TransactionController : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> CreateTransaction([FromBody] Transaction transaction)
+    public async Task<IActionResult> CreateTransaction([FromBody] AccountBalanceOperationDto dto)
     {
 
-        var createdTransaction = await _transactionService.CreateTransaction(transaction);
+        var createdTransaction = await _transactionService.CreateTransaction(dto);
 
         return CreatedAtAction(nameof(GetTransactionById), new { id = createdTransaction.Id }, createdTransaction);
 

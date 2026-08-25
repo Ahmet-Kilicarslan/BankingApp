@@ -1,5 +1,5 @@
+using ClientApi.Services.Interfaces;
 using ClientApi.Models;
-using ClientApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,7 +32,7 @@ public async Task<IActionResult> GetClientById(int id){
 
     }
 
-    [Authorize]
+   // [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllClients()
     {

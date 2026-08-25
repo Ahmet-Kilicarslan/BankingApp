@@ -2,9 +2,9 @@ using AccountApi.Models;
 using AccountApi.Repositories.Interfaces;
 using AccountApi.Data;
 using Microsoft.EntityFrameworkCore;
+using AccountApi.Models.DTOs;
 
-
-namespace TransactionApi.Repositories;
+namespace AccountApi.Repositories;
 
 public class AccountRepository : IAccountRepository
 {
@@ -23,17 +23,28 @@ public class AccountRepository : IAccountRepository
         return await _context.Accounts.FindAsync(Id);
     }
 
+    public async Task<List<Account>> GetAllAccounts()
+    {
+        List<Account> accountList = await _context.Accounts.ToListAsync();
+
+        return accountList;
+    }
+
     public async Task CreateAccount(Account account)
     {
 
         await _context.AddAsync(account);
     }
 
+
+
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
     }
 
+  
+   
 
 
 

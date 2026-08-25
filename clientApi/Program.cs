@@ -1,3 +1,5 @@
+using ClientApi.Repositories.Interfaces;
+using ClientApi.Services.Interfaces;
 using ClientApi.Controllers;
 using ClientApi.Data;
 using ClientApi.Middleware;

@@ -18,6 +18,7 @@ public class TokenController : ControllerBase
 
     }
 
+
     [HttpPost]
     public IActionResult GenerateToken([FromBody]TokenRequestDto request)
     {

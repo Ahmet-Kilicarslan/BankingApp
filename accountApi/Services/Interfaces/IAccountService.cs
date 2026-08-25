@@ -1,5 +1,5 @@
 using AccountApi.Models;
-
+using AccountApi.Models.DTOs;
 namespace AccountApi.Services.Interfaces;
 
 
@@ -10,4 +10,7 @@ public interface IAccountService
 
     Task<Account> CreateAccount(Account account);
 
+    Task UpdateBalance(BalanceUpdateDto balanceUpdateDto);
+
+    Task<List<Account>> GetAllAccounts();
 }

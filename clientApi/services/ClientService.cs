@@ -1,6 +1,6 @@
+using ClientApi.Repositories.Interfaces;
+using ClientApi.Services.Interfaces;
 using ClientApi.Models;
-using ClientApi.Repositories;
-using ClientApi.Services;
 
 namespace ClientApi.Services;
 
@@ -53,7 +53,7 @@ public class ClientService : IClientService
 
         if (await _clientRepository.PhoneExistsAsync(client.Phone))
         {
-            throw new InvalidOperationException("A client with this email already exists");
+            throw new InvalidOperationException("A client with this phone already exists");
         }
 
 

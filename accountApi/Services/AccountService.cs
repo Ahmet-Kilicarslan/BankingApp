@@ -3,8 +3,9 @@ using AccountApi.Models;
 using AccountApi.Repositories.Interfaces;
 using AccountApi.Services.Interfaces;
 using AccountApi.Services;
-
-namespace TransactionApi.Services;
+using AccountApi.Models.DTOs;
+using AccountApi.Middleware;
+namespace AccountApi.Services;
 
 public class AccountService : IAccountService
 {
@@ -28,6 +29,13 @@ public class AccountService : IAccountService
         return await _accountRepository.GetAccountById(Id);
 
     }
+    public async Task<List<Account>> GetAllAccounts()
+    {
+
+        return await _accountRepository.GetAllAccounts();
+
+    }
+    
 
     public async Task<Account> CreateAccount(Account account)
     {
@@ -47,16 +55,48 @@ public class AccountService : IAccountService
     }
 
 
+    public async Task UpdateBalance(BalanceUpdateDto balanceUpdateDto)
+    {
+        var account = await _accountRepository.GetAccountById(balanceUpdateDto.AccountId);
+
+        if (account == null) {
+            throw new InvalidOperationException("Account doesn't exist!");
+        
+        }
+
+        if (balanceUpdateDto.TransactionTypeId == 1) //Deposit
+        {
+            account.Balance += balanceUpdateDto.Amount;
+
+
+        }else if(balanceUpdateDto.TransactionTypeId == 2 ) //Withdraw
+        {
+
+            if (account.Balance < balanceUpdateDto.Amount) {
+                throw new InvalidOperationException("Unsufficient balance!");
+            }
+            account.Balance -= balanceUpdateDto.Amount;
+
+        }
+        else throw new ArgumentException("Invalid transaction type.");
+
+
+        await _accountRepository.SaveChangesAsync();
+
+    }
+
+
+  
     private async Task<bool> ClientExists(int clientId)
     {
 
-        var httpCLient = _httpClientFactory.CreateClient("ClientApi");
+        var httpClient = _httpClientFactory.CreateClient("ClientApi");
 
         var token = await _tokenService.GetTokenAsync();
 
-        httpCLient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        var response = await httpCLient.GetAsync($"api/client/{clientId}");
+        var response = await httpClient.GetAsync($"api/client/{clientId}");
 
         return response.IsSuccessStatusCode;
 

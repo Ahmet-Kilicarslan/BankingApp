@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ClientApi.Data;
 using ClientApi.Models;
-using ClientApi.Repositories;
+using ClientApi.Repositories.Interfaces;
 
 namespace ClientApi.Repositories;
 

@@ -1,6 +1,6 @@
 using ClientApi.Models;
 
-namespace ClientApi.Services;
+namespace ClientApi.Services.Interfaces;
 
 
 public interface IClientService
