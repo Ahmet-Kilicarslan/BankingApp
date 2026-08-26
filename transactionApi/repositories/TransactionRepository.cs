@@ -1,6 +1,7 @@
 using TransactionApi.Models;
 using TransactionApi.Data;
 using TransactionApi.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace TransactionApi.Repositories;
 
@@ -17,6 +18,16 @@ public async Task<Transaction?> GetTransactionById(int Id){
     return await _context.Transactions.FindAsync(Id);
 }
 
+public async Task<List<Transaction>> GetAllTransactions()
+    {
+
+        List<Transaction> TransactionList = await _context.Transactions.ToListAsync();
+
+        return TransactionList;
+
+
+
+    }
 
 public async Task CreateTransaction(Transaction transaction){
 

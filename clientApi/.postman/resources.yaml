@@ -2,6 +2,10 @@
 workspace:
   id: fe86549d-9fc8-43d0-bfc7-442615741567
 
+cloudResources:
+  collections:
+    ../postman/collections/Wechip Bildirim Servisi: a315e0d3-5667-42a9-867c-60f8c263d4c7
+
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:
 #localResources:

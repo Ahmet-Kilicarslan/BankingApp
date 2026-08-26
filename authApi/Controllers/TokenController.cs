@@ -1,6 +1,8 @@
+using AuthApi.Models;
 using AuthApi.Services;
 using Microsoft.AspNetCore.Mvc;
-using AuthApi.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AuthApi.Controllers;
 
@@ -10,11 +12,11 @@ public class TokenController : ControllerBase
 {
 
     private readonly TokenService _tokenService;
-
-    public TokenController(TokenService tokenService)
+    private readonly IConfiguration _configuration;
+    public TokenController(TokenService tokenService,IConfiguration configuration)
     {
         _tokenService = tokenService;
-
+        _configuration= configuration;
 
     }
 
@@ -23,7 +25,18 @@ public class TokenController : ControllerBase
     public IActionResult GenerateToken([FromBody]TokenRequestDto request)
     {
 
+        var validSecret = _configuration[$"OAuthClients:{request.CallerId}"];
+
+
+        if (validSecret == null || !CryptographicOperations.FixedTimeEquals(
+                Encoding.UTF8.GetBytes(validSecret),
+                Encoding.UTF8.GetBytes(request.ClientSecret)))
+        {
+            return Unauthorized();
+        }
         var token = _tokenService.GenerateToken(request.CallerId);
+
+
         return Ok(new  { token });
 
 

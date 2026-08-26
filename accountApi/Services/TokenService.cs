@@ -12,10 +12,12 @@ public class TokenService
 {
 
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IConfiguration _configuration;
 
-    public TokenService(IHttpClientFactory httpClientFactory)
+    public TokenService(IHttpClientFactory httpClientFactory,IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
+        _configuration = configuration;
     }
 
     public async Task<string> GetTokenAsync()
@@ -33,7 +35,9 @@ public class TokenService
 
         var response = await httpClient.PostAsJsonAsync(
             "/api/Token",
-            new { CallerId = "account-api" }
+            new { CallerId = _configuration["OAuthClient:CallerId"],
+                clientSecret = _configuration["OAuthClient:ClientSecret"]
+            }
         );
 
 

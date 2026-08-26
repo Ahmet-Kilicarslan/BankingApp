@@ -29,6 +29,8 @@ public class TokenService
 
         var securityKey = new RsaSecurityKey(rsa);
 
+        securityKey.CryptoProviderFactory.CacheSignatureProviders = false;
+
 
         var credentials = new SigningCredentials(
             securityKey,

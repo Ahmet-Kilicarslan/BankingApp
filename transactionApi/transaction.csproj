@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
         <UseAppHost>false</UseAppHost>
         <AssemblyName>transactionApi</AssemblyName>
+    <UserSecretsId>aa0236b1-4ce2-4bc3-a301-b13e784af443</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -33,6 +33,12 @@ public class TransactionService : ITransactionService
 
     }
 
+
+    public async Task<List<Transaction>> GetAllTransactions()
+    {
+        return await _transactionRepository.GetAllTransactions();
+    }
+
     public async Task<Transaction> CreateTransaction(AccountBalanceOperationDto dto)
     {
 

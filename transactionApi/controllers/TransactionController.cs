@@ -30,6 +30,15 @@ public class TransactionController : ControllerBase
 
     }
 
+    [HttpGet]
+
+    public async Task<IActionResult> GetAllTransactions()
+    {
+        var response = await _transactionService.GetAllTransactions();
+
+        return Ok(response);
+
+    }
 
     [HttpPost]
     public async Task<IActionResult> CreateTransaction([FromBody] AccountBalanceOperationDto dto)

@@ -11,17 +11,36 @@ public class TokenService
 
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public TokenService(IHttpClientFactory httpClientFactory)
+    private readonly IConfiguration _configuration;
+
+    public TokenService(IHttpClientFactory httpClientFactory,IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
+          _configuration = configuration;
+    
     }
 
     public async Task<string> GetTokenAsync()
     {
         var httpClient = _httpClientFactory.CreateClient("AuthApi");
 
-        var response = await httpClient.PostAsJsonAsync("/api/Token", new { clientId = "transaction-api" });
-        response.EnsureSuccessStatusCode();
+
+
+
+        var response = await httpClient.PostAsJsonAsync(
+          "/api/Token",
+          new
+          {
+              CallerId = _configuration["OAuthClient:CallerId"],
+              clientSecret = _configuration["OAuthClient:ClientSecret"]
+          });
+
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorBody = await response.Content.ReadAsStringAsync();
+            throw new InvalidOperationException($"AuthApi token request failed: {errorBody}");
+        }
 
         var result = await response.Content.ReadFromJsonAsync<TokenResponseDTO>();
         return result.Token;

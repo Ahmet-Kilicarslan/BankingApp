@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	  <UseAppHost>false</UseAppHost>
 
+    <UserSecretsId>4f3f6fa3-fe6d-4c13-a847-aad212830cca</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
