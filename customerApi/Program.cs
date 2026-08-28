@@ -17,8 +17,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<ClientDbContext>(options=>
-   options.UseSqlite(builder.Configuration.GetConnectionString("ClientDb")));
+builder.Services.AddDbContext<CustomerDbContext>(options=>
+   options.UseSqlite(builder.Configuration.GetConnectionString("CustomerDb")));
 
 builder.Services.AddScoped<ICustomerRepository,CustomerRepository>();
 builder.Services.AddScoped<ICustomerService,CustomerService>();
@@ -46,6 +46,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBankingUi",
+        policy=> policy.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -61,7 +69,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowBankingUi");
 app.MapControllers();
 
 app.Run();

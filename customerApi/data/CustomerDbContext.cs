@@ -3,14 +3,14 @@ using CustomerApi.Models;
 
 namespace CustomerApi.Data;
 
-public class ClientDbContext: DbContext
+public class CustomerDbContext: DbContext
 {
 
-public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options){
+public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options){
 
 }
 
-public DbSet<Customer> Clients{get;set;}
+public DbSet<Customer> Customers{get;set;}
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {

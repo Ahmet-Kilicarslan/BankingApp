@@ -8,10 +8,10 @@ namespace CustomerApi.Repositories;
 public class CustomerRepository : ICustomerRepository
 {
 
-    private readonly ClientDbContext _context;
+    private readonly CustomerDbContext _context;
 
 
-    public CustomerRepository(ClientDbContext context)
+    public CustomerRepository(CustomerDbContext context)
     {
         _context = context;
     }
@@ -19,13 +19,13 @@ public class CustomerRepository : ICustomerRepository
     public async Task<Customer?> GetClientById(int id)
     {
 
-        return await _context.Clients.FindAsync(id);
+        return await _context.Customers.FindAsync(id);
     }
 
     public async Task<List<Customer>> GetAllClients()
     {
 
-        List<Customer> clientList = await _context.Clients.ToListAsync();
+        List<Customer> clientList = await _context.Customers.ToListAsync();
 
         return clientList;
 
@@ -46,14 +46,14 @@ public class CustomerRepository : ICustomerRepository
     public async Task<bool> EmailExistsAsync(string email)
     {
 
-        return await _context.Clients.AnyAsync(c => c.Mail == email);
+        return await _context.Customers.AnyAsync(c => c.Mail == email);
 
     }
 
     public async Task<bool> PhoneExistsAsync(string phone)
     {
 
-        return await _context.Clients.AnyAsync(c => c.Phone == phone);
+        return await _context.Customers.AnyAsync(c => c.Phone == phone);
 
     }
 

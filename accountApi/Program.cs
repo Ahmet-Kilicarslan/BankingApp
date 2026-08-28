@@ -41,10 +41,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+
 builder.Services.AddAuthorization();
 
-builder.Services.AddHttpClient("ClientApi", client => {
-    client.BaseAddress = new Uri(builder.Configuration["ClientApiUrl"]);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBankingUi",
+        policy=> policy.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
+builder.Services.AddHttpClient("CustomerApi", client => {
+    client.BaseAddress = new Uri(builder.Configuration["CustomerApiUrl"]);
 });
 
 builder.Services.AddHttpClient("AuthApi", client =>
@@ -61,6 +70,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowBankingUi");
 
 app.MapControllers();
 
