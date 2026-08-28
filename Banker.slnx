@@ -1,7 +1,7 @@
 <Solution>
-  <Folder Name="/clientApi/">
-   <Project Path="clientApi/client.csproj" />
-  </Folder>
+<Folder Name="/customerApi/">
+<Project Path="clientApi\customerApi.csproj" />
+</Folder>
   <Folder Name="/transactionApi/">
    <Project Path="transactionApi/transaction.csproj" />
   </Folder>

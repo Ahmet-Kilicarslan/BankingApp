@@ -1,0 +1,181 @@
+$kind: http-request
+description: |-
+  # Wechip Notification API — Entegrasyon Dokümantasyonu
+
+  Müşteri bildirimlerinin (SMS ve Push) Fimple altyapısı üzerinden iletilmesini sağlar.
+
+  Wechip hangi müşteriye ve hangi bildirim kodu ile mesaj gönderileceğini belirtir.
+
+  Wechip kanal seçmez. `NotificationCode` olarak SMS şablon kodunu gönderir (`KKLMT10`, `KKLMT11`, `KKBSVR10` vb.)
+
+  | Müşterinin mobil uygulaması | Gönderim |
+  | --- | --- |
+  | Aktif cihaz var | Push (`KKLMT10` → Fimple’da `KKLMT10PUSH`) |
+  | Aktif cihaz yok | SMS (`KKLMT10` olduğu gibi) |
+
+  Push gönderilemezse SMS’e düşülmez; istek hata döner.
+
+  ---
+
+  ## Endpoint
+
+  POST
+
+  [https://apigateway-test.terabank.com.tr/apigateway/WeChip/TeraNotification/WechipNotification/Send](https://apigateway-test.terabank.com.tr/apigateway/WeChip/TeraNotification/WechipNotification/Send)
+
+  ---
+
+  ## Authentication
+
+  Token, Wechip’e özel login endpoint’inden alınır (client bilgisi bu serviste tutulur; Wechip Authorization’a doğrudan ClientId/Secret göndermez):
+
+  POST [https://test.terayatirimbankasi.com/api/v1/Authorization/ApplicationLogins/Login](https://test.terayatirimbankasi.com/api/v1/Authorization/ApplicationLogins/LoginEndFragment)
+
+  Bu servise istek attıktan sonra "AccessToken": "ey............" alanını tırnak işaretlerini almadan kopyalıyoruz. Kopyaladıktan sonra bildirim servisine gidip **Headers** tabında **Authorization** keyine karşılık gelen value alanına kopyaladığımız tokeni yapıştırıyoruz. Sonrasında istek atabilirsiniz.
+
+  ---
+
+  ## Request Parametreleri
+
+  | Alan | Tip | Zorunlu | Açıklama |
+  | --- | --- | --- | --- |
+  | CustomerId | string | Evet | Fimple müşteri numarası. Örnek: `"10467"` (sayı değil, string) |
+  | NotificationCode | string | Evet | SMS şablon kodu. Push kodu (`…PUSH`) gönderilmez |
+  | Variables | string\[\] | Koşullu | Şablon değişken değerleri (sıralı dizi). Aşağıya bakın |
+  | ExternalReference | string | Hayır | Wechip takip referansı. Gönderilirse response’da aynen döner |
+
+  ---
+
+  ## Variables
+
+  Format: sıralı string dizisi — `["değer1", "değer2"]`
+
+  Sıra önemli: `[0]`, `[1]` anlamları bildirim koduna göre Fimple tarafından tanımlıdır. Her kod için index tablosu bankadan iletilecektir.
+
+  - Statik bildirim (değişken yok): `Variables` gönderilmez veya `[]` bırakılır.
+      
+  - Dinamik bildirim: Fimple’ın o kod için beklediği kadar eleman gönderilir.
+      
+
+  SMS ve Push şablon çiftinde aynı index sırası kullanılmalıdır.
+
+  Örnek — KKLMT10 (1 değişken):
+
+  | Index | Anlam |
+  | --- | --- |
+  | 0 | Kart son 4 hane |
+
+  ---
+
+  ## Response
+
+  | Alan | Tip | Açıklama |
+  | --- | --- | --- |
+  | Success | boolean | İşlem başarılı mı |
+  | Value.ExternalReference | string / null | Request’teki referans |
+  | Value.SelectedChannel | string | `"Sms"` veya `"Push"` |
+  | Value.IsSent | boolean | Bildirim kuyruğa alındı mı |
+
+  Başarılı örnek (SMS):
+
+  {  
+  "Success": true,  
+  "Value": { "ExternalReference": "wechip-1",  
+  "SelectedChannel": "Sms",  
+  "IsSent": true }  
+  }
+
+  Başarılı örnek (Push):
+
+  {  
+  "Success": true,  
+  "Value": { "ExternalReference": "wechip-1",  
+  "SelectedChannel": "Push",  
+  "IsSent": true }  
+  }  
+  Not: Push entegrasyonu bizim tarafımızda kuruldu, sizin ekstra yapmanız gereken bir şey yok. Örnek teşkil etmesi amacıyla paylaşıyorum.
+
+  ---
+
+  ## Örnek İstekler
+
+  Wechip her iki senaryoda da aynı body’yi gönderir. Kanalı servis seçer.
+
+  Dinamik bildirim (KKLMT10)
+
+  {  
+  "CustomerId": "10467",  
+  "NotificationCode": "KKLMT10",  
+  "Variables": \["1234"\],  
+  "ExternalReference": "wechip-1"  
+  }
+
+  Statik bildirim (değişken yok)
+
+  {
+
+  "CustomerId": "10467",  
+  "NotificationCode": "KKAPPLICATIOUNNAPPROVED",  
+  "ExternalReference": "wechip-2"  
+  }
+
+  ---
+
+  ## Desteklenen Değişkenler
+
+  `Variables` dizisindeki değerler.
+
+  | Alan adı | Açıklama |
+  | --- | --- |
+  | CardLastFourDigits | Kart son 4 hane |
+  | MerchantName | İşyeri adı |
+  | TransactionDateTime | İşlem tarih/saat |
+  | Amount | Tutar |
+  | CurrencyCode | Para birimi (TRY vb.) |
+  | CardProductType | Kart ürün tipi |
+  | Otp | OTP kodu |
+
+  ---
+
+  ## Bildirim Kodları
+
+  Wechip’e verilen kod SMS kodudur. Push eşi Fimple’da `PUSH` soneki ile tanımlanır; çeviriyi servis yapar. Bu kodların tamamı sizinle paylaşılacak.
+
+  | Wechip’e verilen kod | SMS şablonu | Push şablonu |
+  | --- | --- | --- |
+  | `KKLMT10` | `KKLMT10` | `KKLMT10PUSH` |
+  | `KKLMT11` | `KKLMT11` | `KKLMT11PUSH` |
+  | `KKBSVR10` | `KKBSVR10` | `KKBSVR10PUSH` |
+  | `KKAPPLICATIOUNNAPPROVED` | `KKAPPLICATIOUNNAPPROVED` | `KKAPPLICATIOUNNAPPROVEDPUSH` |
+
+  ---
+
+  ## Not
+
+  - Kalan `NotificationCode`’lar (SMS + Push çiftleri ve index tablosu) ayrıca iletilecektir.
+      
+  - Bu servis entegrasyon için kullanılabilir. Hata metinleri ileride netleştirilebilir; mevcut doğrulamalar: `CustomerId` zorunlu ve sayısal string, `NotificationCode` zorunlu, `Variables` sayısı şablona uygun olmalıdır.
+      
+  - SMS için müşterinin varsayılan cep telefonu tanımlı olmalıdır. Push için müşterinin Tera mobil aktivasyonu (`PushNotification/Init`) yapılmış olmalıdır.
+url: https://apigateway-test.terabank.com.tr/apigateway/WeChip/TeraNotification/WechipNotification/Send
+method: POST
+headers:
+  accept: text/plain
+  Authorization: "{{supabase_service_role_api_key_080e}}eyJleHAiOjE3ODc3MDEyNDYsImlhdCI6MTc4NzY3OTY0NiwianRpIjoiYTAxNTkwYjUtNDQzMS00NmE4LThhMWUtZDQ3ZjgwMjc3ZjQ3IiwiaXNzIjoiaHR0cDovL2ZpLWF1dGhvcml6YXRpb24taWRlbnRpdHkuZmktYmFja2VuZC5zdmMuY2x1c3Rlci5sb2NhbDo4MDgwL2F1dGgvcmVhbG1zL3RlcmF5YXRpcmltYmFua2FzaSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiZDNjMzFkYy02YWRiLTQ3YzgtODg0YS0yYzdlNzkyZTVmNTUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJmaS1vcGVuYmFua2luZy1jbGllbnQiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtZmltcGxlIiwiRW1wbG95ZWUiLCJvZmZsaW5lX2FjY2VzcyIsIkFwcFVzZXIiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSA1MDAzMiBlbWFpbCIsImFwcGxpY2F0aW9uX2xvZ2luX3R5cGUiOiJTZXJ2aWNlVXNlciIsImNsaWVudElkIjoiZmktb3BlbmJhbmtpbmctY2xpZW50IiwiY2xpZW50SG9zdCI6IjEwLjQyLjIxMC4xMDkiLCJ0ZW5hbnRfa2V5IjoidGVyYXlhdGlyaW1iYW5rYXNpIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpbnRlcm5hbF91c2VyX2lkIjoiMTY0NDEiLCJhcHBsaWNhdGlvbl9jb2RlIjoiT3BlbkJhbmtpbmciLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtZmktb3BlbmJhbmtpbmctY2xpZW50IiwiY2xpZW50QWRkcmVzcyI6IjEwLjQyLjIxMC4xMDkifQ.OLsUUlu3QPZ9nMj2CMdCiHu8ziTM2lle2Zu3wrdXgdKn29zKdHjtog6A1S41rp25k5JiP0p7-6DKogpHhgf4J2yozp-iN8occ9L54xR_aw67HWiYKrsFwe1PYxNAbCMSBfnOSudvW6y8Qn2YNDPctBM9Qr6GDj5HjzdTIv3lW-sVaCQtqVEFLN8D14u1M9fCQj8Y2Z4u0x7tKXWbCz-tWofbIO8A9q5PrKaSuEHUzfXDQRC8rqaORFeGx-Tq2dVd17DB5m-0I9f6Nh08RjHAYdE7eZZaXI9famRPckI6ZFSDGsZuxVzp0avzq5mQ5FwuUvBzcGgd-FQQuOxsqmdGLg"
+  Content-Type: application/json-patch+json
+body:
+  type: json
+  content: "{\r
+
+    \  \"CustomerId\": \"10467\",\r
+
+    \  \"NotificationCode\": \"KKLMT10\",\r
+
+    \  \"Variables\": [\r
+
+    \    \"2789\"\r
+
+    \  ]\r
+
+    }"
+order: 1000
