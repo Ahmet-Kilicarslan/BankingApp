@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
         <UseAppHost>false</UseAppHost>
 
-    <AssemblyName>ClientApi</AssemblyName>
+    <AssemblyName>CustomerApi</AssemblyName>
     <UserSecretsId>24bb1a77-04ae-4617-9084-00658173ffca</UserSecretsId>
   </PropertyGroup>
 

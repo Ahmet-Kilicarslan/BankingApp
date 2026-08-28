@@ -39,7 +39,7 @@ public class AccountService : IAccountService
 
     public async Task<Account> CreateAccount(Account account)
     {
-        if (!await ClientExists(account.ClientId))
+        if (!await CustomerExists(account.CustomerId))
         {
 
             throw new InvalidOperationException("Client does not exist");
@@ -87,16 +87,16 @@ public class AccountService : IAccountService
 
 
   
-    private async Task<bool> ClientExists(int clientId)
+    private async Task<bool> CustomerExists(int customerId)
     {
 
-        var httpClient = _httpClientFactory.CreateClient("ClientApi");
+        var httpClient = _httpClientFactory.CreateClient("CustomerApi");
 
         var token = await _tokenService.GetTokenAsync();
 
         httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        var response = await httpClient.GetAsync($"api/client/{clientId}");
+        var response = await httpClient.GetAsync($"api/customer/{customerId}");
 
         return response.IsSuccessStatusCode;
 

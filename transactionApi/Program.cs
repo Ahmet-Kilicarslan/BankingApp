@@ -56,9 +56,10 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseExceptionHandler();
+app.UseCors("AllowBankingUi");
 app.UseHttpsRedirection();
 
-app.UseCors("AllowBankingUi");
+
 
 app.MapControllers();
 

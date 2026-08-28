@@ -28,9 +28,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowBankingUi");
+
 app.UseAuthorization();
 
-app.UseCors("AllowBankingUi");
+
 
 app.MapControllers();
 
