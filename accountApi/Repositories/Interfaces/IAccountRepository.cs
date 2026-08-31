@@ -8,6 +8,8 @@ public interface IAccountRepository
 
     Task<Account?> GetAccountById(int Id);
 
+    Task<List<Account>> GetAccountsByCustomerId(int customerId);
+     
     Task<List<Account>> GetAllAccounts();
      
     Task CreateAccount(Account account);

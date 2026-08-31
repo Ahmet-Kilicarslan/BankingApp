@@ -16,11 +16,22 @@ public class AccountRepository : IAccountRepository
     {
         _context = context;
     }
+    
+    
 
     public async Task<Account?> GetAccountById(int Id)
     {
 
         return await _context.Accounts.FindAsync(Id);
+    }
+
+    public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
+    {
+
+        List<Account> accountList = await _context.Accounts.Where(account => account.CustomerId == customerId).ToListAsync();
+        
+        return accountList;
+
     }
 
     public async Task<List<Account>> GetAllAccounts()

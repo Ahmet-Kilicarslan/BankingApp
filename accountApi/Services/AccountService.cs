@@ -29,6 +29,12 @@ public class AccountService : IAccountService
         return await _accountRepository.GetAccountById(Id);
 
     }
+
+    public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
+    {
+        return await _accountRepository.GetAccountsByCustomerId(customerId);
+        
+    }
     public async Task<List<Account>> GetAllAccounts()
     {
 

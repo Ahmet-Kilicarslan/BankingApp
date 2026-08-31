@@ -9,13 +9,19 @@ const baseUrl = process.env.NEXT_PUBLIC_ACCOUNT_API_URL;
 
 export async function getAccountById(accountId:number):Promise<Account>{
  
- const url = `${baseUrl}/api/accounts/${accountId}`;
+ const url = `${baseUrl}/api/account/${accountId}`;
     
  return apiClient<Account>(url);
  
 }
 
+export async function getAccountsByCustomerId(customerId:number):Promise<Account[]>{
+    
+    const url = `${baseUrl}/api/account/customer/${customerId}`;
+    
+    return apiClient<Account[]>(url);
 
+}
 export async function getAllAccounts():Promise<Account[]>{
  
 const url = `${baseUrl}/api/account`;
