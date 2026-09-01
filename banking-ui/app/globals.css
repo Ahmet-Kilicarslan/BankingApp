@@ -1,6 +1,76 @@
 @import "tailwindcss";
 
 :root,
+
+[data-theme="plum-cream"] {
+  --color-background: #2D2933;
+  --color-surface: #393646;
+  --color-border: #4F4557;
+
+  --color-text-primary: #F4EEE0;
+  --color-text-muted: #B8AFBC;
+
+  --color-accent: #D6C2D0;
+
+  --color-success: #82B99A;
+  --color-danger: #D97777;
+}
+[data-theme="charcoal-sand"] {
+  --color-background: #1B2026;
+  --color-surface: #222831;
+  --color-border: #393E46;
+
+  --color-text-primary: #DFD0B8;
+  --color-text-muted: #948979;
+
+  --color-accent: #DFD0B8;
+
+  --color-success: #7FA88A;
+  --color-danger: #C96F6F;
+}
+[data-theme="teal-terracotta"] {
+  --color-background: #0B2633;
+  --color-surface: #0F3040;
+  --color-border: #464858;
+
+  --color-text-primary: #F3E9E2;
+  --color-text-muted: #B8A9A5;
+
+  --color-accent: #D99B7F;
+
+  --color-success: #79B89A;
+  --color-danger: #D86F6F;
+}
+
+[data-theme="plum-ivory"] {
+  --color-background: #292536;
+  --color-surface: #352F44;
+  --color-border: #5C5470;
+
+  --color-text-primary: #FAF0E6;
+  --color-text-muted: #B9B4C7;
+
+  --color-accent: #FAF0E6;
+
+  --color-success: #82C99A;
+  --color-danger: #E57373;
+}
+
+[data-theme="indigo-peach"] {
+  --color-background: #2D3250;
+  --color-surface: #424769;
+  --color-border: #7077A1;
+
+  --color-text-primary: #F6B17A;
+  --color-text-muted: #7077A1;
+
+  --color-accent: #F6B17A;
+
+  --color-success: #7077A1;
+  --color-danger: #F6B17A;
+}
+
+
 [data-theme="silver"] {
   --color-background: #0E1420;
   --color-surface: #151C29;

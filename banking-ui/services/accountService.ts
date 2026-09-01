@@ -1,7 +1,7 @@
 import Account from '../models/account';
 
 
-import apiClient from "./handleResponse";
+import {apiClient} from "./handleResponse";
 
 const baseUrl = process.env.NEXT_PUBLIC_ACCOUNT_API_URL;
 
@@ -22,6 +22,7 @@ export async function getAccountsByCustomerId(customerId:number):Promise<Account
     return apiClient<Account[]>(url);
 
 }
+
 export async function getAllAccounts():Promise<Account[]>{
  
 const url = `${baseUrl}/api/account`;

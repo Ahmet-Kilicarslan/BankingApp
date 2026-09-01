@@ -2,11 +2,11 @@
 
 export default interface Transaction {
     
-    Id:number,
-    AccountId:number,
-    Amount:number,
-    TransactionDate:Date
-    TransactionTypeId:number
+    id:number,
+    accountId:number,
+    amount:number,
+    transactionDate:Date
+    transactionTypeId:number
     
     
 }

@@ -31,7 +31,7 @@ public class AccountController : ControllerBase
         return Ok(account);
     }
 
-    [HttpGet("/customer/{customerId}")]
+    [HttpGet("customer/{customerId}")]
     public async Task<IActionResult> GetAccountByCustomerId(int customerId)
     {
         var accountList = await _accountService.GetAccountsByCustomerId(customerId);

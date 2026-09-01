@@ -18,7 +18,7 @@ export default function Sidebar() {
     const [collapsed, setCollapsed] = useState(false);
 
     return (
-        <aside className={`h-screen bg-surface border-r border-border flex flex-col transition-all duration-200 
+        <aside className={`sticky top-0 h-screen bg-surface border-r border-border flex flex-col overflow-y-auto transition-all duration-200 
         ${collapsed ? 'w-16' : 'w-56'}`}>
 
             <button

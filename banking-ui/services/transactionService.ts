@@ -1,6 +1,6 @@
 import Transaction from "../models/transaction";
 
-import apiClient from "./handleResponse";
+import {apiClient} from "./handleResponse";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_TRANSACTION_API_URL;

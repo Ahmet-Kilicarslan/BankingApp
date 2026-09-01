@@ -1,5 +1,5 @@
 import Customer from './models/customer';
-import apiClient from './handleResponse';
+import {apiClient} from './handleResponse';
 
 const baseUrl = process.env.NEXT_PUBLIC_CUSTOMER_API_URL;
 

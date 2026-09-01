@@ -1,8 +1,8 @@
 export default interface Customer{
     
-    Id:number,
-    Name:string,
-    Mail:string,
-    Phone:number,
-    JoinedAt:Date
+    id:number,
+    name:string,
+    mail:string,
+    phone:number,
+    joinedAt:Date
 }

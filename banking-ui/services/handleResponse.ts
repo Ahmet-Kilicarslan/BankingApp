@@ -1,5 +1,5 @@
 
-import apiError from "./apiError";
+import ApiError from "./apiError";
 
 
   async function handleResponse<T>(response:Response):Promise<T> {
@@ -39,7 +39,7 @@ interface RequestOptions extends RequestInit{
       token?: string;
 }
 
-async function apiClinet<T>(Url:string,options:RequestOptions={}): Promise<T> {
+async function apiClient<T>(Url:string,options:RequestOptions={}): Promise<T> {
       
       const {token,headers,method,...customConfig}=options;
       
@@ -58,10 +58,11 @@ async function apiClinet<T>(Url:string,options:RequestOptions={}): Promise<T> {
       
       const response = await fetch(Url,config);
       
+      
       return handleResponse<T>(response);
       
       
 }
 
 
-export {apiClinet,handleResponse};
+export {apiClient,handleResponse};

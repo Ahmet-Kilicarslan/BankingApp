@@ -1,10 +1,10 @@
 export default interface Account {
     
     id:number,
-    AccountNo:number,
-    CustomerId:number,
-    Balance:number,
-    OpenedAt:Date
+    accountNo:number,
+    customerId:number,
+    balance:number,
+    openedAt:Date
     
     
     
