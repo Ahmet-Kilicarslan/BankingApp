@@ -10,7 +10,7 @@ public interface IAccountService
 
     Task<List<Account>> GetAccountsByCustomerId(int customerId);
     
-    Task<Account> CreateAccount(Account account);
+    Task<Account> CreateAccount(int customerId);
 
     Task UpdateBalance(BalanceUpdateDto balanceUpdateDto);
 

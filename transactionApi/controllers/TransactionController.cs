@@ -34,7 +34,7 @@ public class TransactionController : ControllerBase
 
     public async Task<IActionResult> GetAllTransactions()
     {
-        var response = await _transactionService.GetAllTransactions();
+        var response = await _transactionService.GetAllTransactionDetails();
 
         return Ok(response);
 

@@ -9,10 +9,11 @@ public interface ITransactionService{
 
 Task<Transaction?> GetTransactionbyId(int Id);
 
-    Task<List<Transaction>> GetAllTransactions();
+Task<List<Transaction>> GetAllTransactions();
 
 Task<Transaction> CreateTransaction(AccountBalanceOperationDto dto);
 
+Task<List<TransactionDetailsDto>> GetAllTransactionDetails();
 
 
 }

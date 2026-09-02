@@ -12,7 +12,7 @@ public interface IAccountRepository
      
     Task<List<Account>> GetAllAccounts();
      
-    Task CreateAccount(Account account);
+    Task<Account> CreateAccount(int customerId);
 
     Task SaveChangesAsync();
 

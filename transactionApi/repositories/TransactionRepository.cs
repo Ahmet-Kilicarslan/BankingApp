@@ -39,6 +39,13 @@ public async Task SaveChangesAsync(){
 }
 
 
-
+public async Task<string> GetTransactionTypeName(int transactionTypeId)
+{
+    TransactionType transType = await _context.TransactionTypes.FindAsync(transactionTypeId);
+    
+    string transTypeName = transType.Name;
+    
+    return transTypeName;
+}
 
 }

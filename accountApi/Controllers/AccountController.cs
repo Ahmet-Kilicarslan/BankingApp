@@ -55,10 +55,10 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAccount([FromBody] Account account)
+    public async Task<IActionResult> CreateAccount([FromBody] int customerId)
     {
 
-        var createdAccount = await _accountService.CreateAccount(account);
+        var createdAccount = await _accountService.CreateAccount(customerId);
 
         return CreatedAtAction(nameof(GetAccountById), new { id = createdAccount.Id }, createdAccount);
     }

@@ -41,13 +41,26 @@ public class AccountRepository : IAccountRepository
         return accountList;
     }
 
-    public async Task CreateAccount(Account account)
+    public async Task<Account> CreateAccount(int customerId)
     {
+        var account = new Account
+        {
+            AccountNo = GenerateAccountNo(),
+            CustomerId = customerId,
+            Balance = 0
+        };
 
         await _context.AddAsync(account);
+        
+        return account;
     }
 
 
+    private int GenerateAccountNo()
+    {
+        return Random.Shared.Next(100000, 1000000);
+
+    }
 
     public async Task SaveChangesAsync()
     {
