@@ -31,6 +31,7 @@ public class AccountController : ControllerBase
         return Ok(account);
     }
 
+    [Authorize]
     [HttpGet("customer/{customerId}")]
     public async Task<IActionResult> GetAccountByCustomerId(int customerId)
     {

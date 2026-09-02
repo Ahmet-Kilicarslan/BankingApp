@@ -14,6 +14,10 @@
 
   --color-success: #82B99A;
   --color-danger: #D97777;
+  
+  --color-wordle-correct: #82B99A;
+  --color-wordle-present: #D6B56F;
+  --color-wordle-absent: #625B6B;
 }
 [data-theme="charcoal-sand"] {
   --color-background: #1B2026;

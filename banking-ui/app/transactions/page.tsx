@@ -1,5 +1,5 @@
 
-import TransactionsComponent from "../../components/transactionsComponent"
+import TransactionsComponent from "../../components/TransactionsComponent"
 import {GetAllTransactions} from "../../services/transactionService"
 export default  async function TransactionsPage() {
 

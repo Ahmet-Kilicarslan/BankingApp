@@ -5,7 +5,7 @@ import Customer from '../models/customer';
 import Account from '../models/account';
 import {getAccountsByCustomerId} from "../services/accountService"
 import {Skull} from "lucide-react"; 
-import AccountsPanel from "./accountsPanel";
+import AccountsPanel from "./AccountsPanel";
 
 
 export default  function CustomersComponent({customers}: { customers: Customer[] }) {

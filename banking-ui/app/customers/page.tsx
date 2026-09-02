@@ -1,4 +1,4 @@
-import CustomersComponent from "../../components/customersComponent";
+import CustomersComponent from "../../components/CustomersComponent";
 import {getAllCustomers} from "../../services/customerService";
 
 import { Customer } from '../../models/customer';
