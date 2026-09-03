@@ -92,7 +92,7 @@ public class AccountService : IAccountService
         httpClient.DefaultRequestHeaders.Authorization =
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        var response = await httpClient.GetAsync($"api/customer/{customerId}");
+        var response = await httpClient.GetAsync($"/api/customer/{customerId}");
 
         return response.IsSuccessStatusCode;
     }

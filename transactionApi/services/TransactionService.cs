@@ -86,6 +86,7 @@ public class TransactionService : ITransactionService
 
             var transDetail = new TransactionDetailsDto
             {
+                Id=item.Id,
                 CustomerName = customerDetails.Name,
                 AccountNo = accountDetails.AccountNo,
                 TransactionType = transTypeName,

@@ -1,7 +1,3 @@
-
-
-
-
 using AccountApi.Models.DTOs;
 using System.Net.Http.Json;
 
@@ -10,11 +6,10 @@ namespace AccountApi.Services;
 
 public class TokenService
 {
-
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _configuration;
 
-    public TokenService(IHttpClientFactory httpClientFactory,IConfiguration configuration)
+    public TokenService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
         _configuration = configuration;
@@ -35,7 +30,9 @@ public class TokenService
 
         var response = await httpClient.PostAsJsonAsync(
             "/api/Token",
-            new { CallerId = _configuration["OAuthClient:CallerId"],
+            new
+            {
+                ClientId = _configuration["OAuthClient:ClientId"],
                 clientSecret = _configuration["OAuthClient:ClientSecret"]
             }
         );
@@ -46,8 +43,5 @@ public class TokenService
         var result = await response.Content.ReadFromJsonAsync<TokenResponseDTO>();
 
         return result.Token;
-
     }
-
-
 }

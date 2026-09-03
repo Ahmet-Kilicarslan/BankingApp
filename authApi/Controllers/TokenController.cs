@@ -25,7 +25,7 @@ public class TokenController : ControllerBase
     public IActionResult GenerateToken([FromBody]TokenRequestDto request)
     {
 
-        var validSecret = _configuration[$"OAuthClients:{request.CallerId}"];
+        var validSecret = _configuration[$"OAuthClients:{request.ClientId}"];
 
 
         if (validSecret == null || !CryptographicOperations.FixedTimeEquals(
@@ -34,7 +34,7 @@ public class TokenController : ControllerBase
         {
             return Unauthorized();
         }
-        var token = _tokenService.GenerateToken(request.CallerId);
+        var token = _tokenService.GenerateToken(request.ClientId);
 
 
         return Ok(new  { token });

@@ -4,6 +4,7 @@ public class TransactionDetailsDto()
 {
     
 
+    public int Id { get; set; }
     public string CustomerName { get; set; }
     public int AccountNo { get; set; }
     public string TransactionType { get; set; }

@@ -109,9 +109,49 @@
   --color-accent: var(--color-accent);
   --color-success: var(--color-success);
   --color-danger: var(--color-danger);
+  --color-wordle-correct: var(--color-wordle-correct);
+  --color-wordle-present: var(--color-wordle-present);
+  --color-wordle-absent: var(--color-wordle-absent);
 }
 
+
+
 @layer components {
+
+  .btn-game {
+    width: 140px;
+    height: 50px;
+
+    padding: 0;
+
+    background-color: var(--color-danger);
+    color: var(--color-text-primary);
+
+    border: 2px solid var(--color-border);
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 6px 6px 0px var(--color-wordle-absent);
+
+    transition:
+            transform 0.08s ease,
+            box-shadow 0.08s ease;
+  }
+
+  .btn-game:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--color-wordle-absent);
+  }
+
+  .btn-game:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 var(--color-wordle-absent);
+  }
+  
+  
   .btn-primary {
     background: var(--color-accent);
     color: var(--color-background);
@@ -152,4 +192,32 @@
   .btn-danger:hover {
     opacity: 0.9;
   }
+  
+  
+
+}
+@keyframes wordle-win {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-12px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(5deg);
+  }
+
+  75% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.wordle-win {
+  animation: wordle-win 600ms ease-in-out;
 }

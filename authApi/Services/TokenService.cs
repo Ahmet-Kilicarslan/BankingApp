@@ -15,7 +15,7 @@ public class TokenService
         _configuration = configuration; 
     }
 
-    public string GenerateToken(string CallerId)
+    public string GenerateToken(string ClientId)
     {
         var privateKey = _configuration["Jwt:PrivateKey"] 
             ?? throw new InvalidOperationException(
@@ -38,7 +38,7 @@ public class TokenService
            );
 
         var claims = new[] {
-        new Claim(JwtRegisteredClaimNames.Sub,CallerId),
+        new Claim(JwtRegisteredClaimNames.Sub,ClientId),
 
         new Claim("client_type","service")
         

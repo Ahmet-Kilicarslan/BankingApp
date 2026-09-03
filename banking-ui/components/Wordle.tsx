@@ -7,6 +7,7 @@ export default function Wordle() {
     const rowCount: number = 6;
     const colCount: number = 5;
 
+
     type LetterStatus = "correct" | "absent" | "present" | "";
 
     type Cell = {
@@ -17,13 +18,18 @@ export default function Wordle() {
 
     const [gameBoard, setGameBoard] = useState<Board>(
         Array.from({length: rowCount}, () =>
-            Array.from({length: colCount}, () => "")
+            Array.from({length: colCount}, () => ({
+                letter: "",
+                status: ""
+            }))
         ));
 
     const [answer, setAnswer] = useState<string>("");
 
     const [currentRow, setCurrentRow] = useState(0);
     const [currentCol, setCurrentCol] = useState(0);
+    const [youWin, setYouWin] = useState(false);
+    const [youLooseSucker, setYouLooseSucker] = useState(false);
 
     interface WordsData {
         words: string[];
@@ -44,12 +50,49 @@ export default function Wordle() {
 
     }
 
+    function getCellColor(letterStatus: LetterStatus): string {
+
+        switch (letterStatus) {
+            case "correct":
+                return "bg-wordle-correct";
+            case "absent":
+                return "bg-wordle-absent";
+            case "present":
+                return "bg-wordle-present";
+            default:
+                return "bg-surface"
+        }
+
+    }
+
     function handleKeyDown(event: KeyboardEvent) {
         const key: string = event.key.toUpperCase();
 
+     
+
         if (key === "ENTER") {
+            event.preventDefault();
             if (currentCol === colCount) {
                 submitGuess();
+            }
+
+            return;
+        }
+
+
+        if (key === "BACKSPACE") {
+            event.preventDefault();
+
+            if (currentCol > 0) {
+                const newBoard = gameBoard.map(row =>
+                    row.map(cell => ({...cell}))
+                );
+
+                newBoard[currentRow][currentCol - 1].letter = "";
+                newBoard[currentRow][currentCol - 1].status = "";
+
+                setGameBoard(newBoard);
+                setCurrentCol(currentCol - 1);
             }
 
             return;
@@ -63,17 +106,28 @@ export default function Wordle() {
             return;
         }
 
-        const newBoard = gameBoard.map(row => [...row]);
+        const newBoard = gameBoard.map(row =>
+            row.map(cell => ({...cell}))
+        );
 
         newBoard[currentRow][currentCol].letter = key;
 
-        setGameBoard(newBoard);
 
         setCurrentCol(currentCol + 1);
+
+        setGameBoard(newBoard);
+
+
     }
 
+   
 
     function submitGuess() {
+
+
+        if (!answer) {
+            return;
+        }
 
         if (currentCol !== colCount) {
             return;
@@ -83,7 +137,9 @@ export default function Wordle() {
             .map(cell => cell.letter)
             .join("");
 
-        const newBoard = gameBoard.map(row => [...row]);
+        const newBoard = gameBoard.map(row =>
+            row.map(cell => ({...cell}))
+        );
 
         let remainingAnswer = answer;
 
@@ -121,39 +177,98 @@ export default function Wordle() {
             }
         }
 
+        const isCorrect = newBoard[currentRow].every(
+            cell => cell.status === "correct"
+        );
+
+        if (isCorrect) {
+            setYouWin(true);
+        } else if (currentRow === rowCount - 1) {
+            setYouLooseSucker(true);
+        } else {
+            setCurrentRow(currentRow + 1);
+            setCurrentCol(0);
+        }
+
+
         setGameBoard(newBoard);
+
+
     }
 
 
+    async function newGame() {
+        setGameBoard(
+            Array.from({length: rowCount}, () =>
+                Array.from({length: colCount}, () => ({
+                    letter: "",
+                    status: ""
+                }))));
 
 
-useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-        window.removeEventListener('keydown', handleKeyDown);
+        setCurrentRow(0);
+        setCurrentCol(0);
+        setYouWin(false);
+        setYouLooseSucker(false);
+
+        let newAnswer: string = await fetchWord();
+
+        setAnswer(newAnswer.toUpperCase());
+
+
     }
-}, []);
 
 
-return (
-    <div className="justify-self-center mt-10">
-        {Array.from({length: rowCount}).map((_, rowIndex) => (
-            <div key={rowIndex} className="flex flex-row gap-2">
-                {Array.from({length: colCount}).map((_, colIndex) => (
-                    <div key={`${rowIndex} ${colIndex}`} className="w-[128px] h-[128px]
-                     border-r border-border rounded bg-surface
+    useEffect(() => {
+        fetchWord().then(word => {
+            setAnswer(word.toUpperCase());
+        });
+
+    }, []);
+
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [gameBoard, currentRow, currentCol, answer, youWin, youLooseSucker]);
+
+
+    console.log("Answer:", answer);
+
+    return (
+
+
+        <div className="justify-self-center items-center gap-6 mt-10">
+
+            <div>
+                {Array.from({length: rowCount}).map((_, rowIndex) => (
+                    <div key={rowIndex} className="flex flex-row gap-2">
+                        {Array.from({length: colCount}).map((_, colIndex) => (
+                            <div key={`${rowIndex} ${colIndex}`} className={`w-[128px] h-[128px]
+                     border border-border rounded ${getCellColor(gameBoard[rowIndex][colIndex].status)}
                      text-white text-2xl font-bold flex 
-                     items-center justify-center uppercase mb-2">
+                     items-center justify-center uppercase mb-2
+                      ${youWin && rowIndex === currentRow ? "wordle-win" : ""}
+                     `}>
 
+                                {gameBoard[rowIndex][colIndex].letter}
+                            </div>
+                        ))}
 
-                        {gameBoard[rowIndex][colIndex]}
                     </div>
                 ))}
 
             </div>
-        ))}
 
-    </div>
-);
+            <button className="btn-game " onClick={newGame}>Again!</button>
+
+
+        </div>
+
+
+    );
 
 }

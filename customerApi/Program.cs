@@ -22,7 +22,7 @@ builder.Services.AddDbContext<CustomerDbContext>(options=>
 
 builder.Services.AddScoped<ICustomerRepository,CustomerRepository>();
 builder.Services.AddScoped<ICustomerService,CustomerService>();
-
+builder.Services.AddScoped<FileExporterService>();
 builder.Services.AddControllers();
 
 
@@ -63,7 +63,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var exporter = scope.ServiceProvider.GetRequiredService<FileExporterService>();
+    await exporter.ExportCustomers();
+}
 
 app.UseHttpsRedirection();
 app.UseCors("AllowBankingUi");
