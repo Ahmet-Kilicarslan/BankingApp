@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TransactionApi.Data;
 
@@ -10,9 +11,11 @@ using TransactionApi.Data;
 namespace transaction.Migrations
 {
     [DbContext(typeof(TransactionDbContext))]
-    partial class TransactionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260904131118_editedTables")]
+    partial class editedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
@@ -54,7 +57,7 @@ namespace transaction.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool?>("IsInterBank")
+                    b.Property<bool>("IsInterBank")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -69,11 +72,13 @@ namespace transaction.Migrations
                         new
                         {
                             Id = 1,
+                            IsInterBank = false,
                             Name = "Deposit"
                         },
                         new
                         {
                             Id = 2,
+                            IsInterBank = false,
                             Name = "Withdraw"
                         });
                 });

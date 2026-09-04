@@ -1,12 +1,10 @@
 export default interface Account {
-    
-    id:number,
-    accountNo:number,
-    customerId:number,
-    balance:number,
-    openedAt:Date
-    
-    
-    
-    
+
+    id: number,
+    accountNo: number,
+    customerName: string,
+    balance: number,
+    openedAt: Date
+
+
 }

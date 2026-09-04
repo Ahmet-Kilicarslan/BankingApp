@@ -4,7 +4,7 @@ export default   function WordlePage(){
     
     
     return (
-        <div className="p-6">
+        <div className="flex justify-center p-6">
             <Wordle/>
         </div>
         

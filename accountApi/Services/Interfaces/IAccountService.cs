@@ -14,5 +14,5 @@ public interface IAccountService
 
     Task UpdateBalance(BalanceUpdateDto balanceUpdateDto);
 
-    Task<List<Account>> GetAllAccounts();
+    Task<List<AccountDetailsDto>> GetAllAccounts();
 }

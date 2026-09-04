@@ -34,11 +34,42 @@ public class AccountService : IAccountService
         return await _accountRepository.GetAccountsByCustomerId(customerId);
     }
 
-    public async Task<List<Account>> GetAllAccounts()
+    public async Task<List<AccountDetailsDto>> GetAllAccounts()
     {
-        return await _accountRepository.GetAllAccounts();
-    }
+        var accounts= await _accountRepository.GetAllAccounts();
+        
+        var tasks = accounts.Select(async account =>
+        {
+            var customerName = await GetCustomerName(account.CustomerId);
+        
+            return new AccountDetailsDto(
+                id: account.Id,
+                accountNo: account.AccountNo,
+                customerName: customerName,
+                balance: account.Balance,
+                openedAt: account.OpenedAt
+            );
+        });
 
+        var accountDetailsArray = await Task.WhenAll(tasks);
+    
+        return accountDetailsArray.ToList();
+    }
+    private async Task<string> GetCustomerName(int customerId)
+    {
+        var httpClient =_httpClientFactory.CreateClient("CustomerApi");
+        
+        var token = await _tokenService.GetTokenAsync();
+        
+        httpClient.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        
+        var response = await httpClient.GetAsync($"/api/customer/{customerId}");
+        var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
+        
+        return customer.Name;
+        
+    }
 
     public async Task<Account> CreateAccount(int customerId)
     {
@@ -96,4 +127,6 @@ public class AccountService : IAccountService
 
         return response.IsSuccessStatusCode;
     }
+
+
 }

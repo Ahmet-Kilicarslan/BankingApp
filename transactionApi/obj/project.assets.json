@@ -2722,9 +2722,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ahmet/Desktop/Banker/transactionApi/transaction.csproj",
+      "projectUniqueName": "/home/ahmet/Desktop/Banker/transactionApi/transactionApi.csproj",
       "projectName": "transactionApi",
-      "projectPath": "/home/ahmet/Desktop/Banker/transactionApi/transaction.csproj",
+      "projectPath": "/home/ahmet/Desktop/Banker/transactionApi/transactionApi.csproj",
       "packagesPath": "/home/ahmet/.nuget/packages/",
       "outputPath": "/home/ahmet/Desktop/Banker/transactionApi/obj/",
       "projectStyle": "PackageReference",

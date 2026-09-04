@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rfeEGGEH0HE=",
+  "dgSpecHash": "WUuF0XRdwnk=",
   "success": true,
-  "projectFilePath": "/home/ahmet/Desktop/Banker/transactionApi/transaction.csproj",
+  "projectFilePath": "/home/ahmet/Desktop/Banker/transactionApi/transactionApi.csproj",
   "expectedPackageFiles": [
     "/home/ahmet/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/ahmet/.nuget/packages/microsoft.aspnetcore.openapi/10.0.11/microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",

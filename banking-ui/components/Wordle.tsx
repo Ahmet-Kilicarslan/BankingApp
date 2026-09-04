@@ -4,9 +4,17 @@ import {useState, useEffect} from 'react';
 
 export default function Wordle() {
 
+
     const rowCount: number = 6;
     const colCount: number = 5;
 
+    type color = "bg-danger" | "bg-wordle-absent" | "bg-wordle-correct";
+
+    type cell = {
+
+        letter: string;
+        color: color;
+    }
 
     type LetterStatus = "correct" | "absent" | "present" | "";
 
@@ -24,6 +32,23 @@ export default function Wordle() {
             }))
         ));
 
+    type letterBoard = cell[][]
+
+    const [alphabet, setAlphabet] = useState<letterBoard>(() => {
+        let charCode = 65;
+
+        return Array.from({length: rowCount}, () =>
+            Array.from({length: colCount}, () => {
+                const letter = charCode <= 90 ? String.fromCharCode(charCode++) : "";
+                return {
+                    letter,
+                    color: "bg-wordle-absent",
+                };
+            })
+        );
+    });
+
+
     const [answer, setAnswer] = useState<string>("");
 
     const [currentRow, setCurrentRow] = useState(0);
@@ -31,21 +56,19 @@ export default function Wordle() {
     const [youWin, setYouWin] = useState(false);
     const [youLooseSucker, setYouLooseSucker] = useState(false);
 
-    interface WordsData {
-        words: string[];
-    }
+   
 
     async function fetchWord(): Promise<string> {
 
         const response = await fetch('/words.json');
 
-        const wordsList: WordsData = await response.json();
+        const wordsList: string[] = await response.json();
 
-        const length = wordsList.words.length;
+        const length = wordsList.length;
 
         const randomIndex: number = Math.floor(Math.random() * length);
 
-        return wordsList.words[randomIndex];
+        return wordsList[randomIndex];
 
 
     }
@@ -68,7 +91,6 @@ export default function Wordle() {
     function handleKeyDown(event: KeyboardEvent) {
         const key: string = event.key.toUpperCase();
 
-     
 
         if (key === "ENTER") {
             event.preventDefault();
@@ -120,7 +142,6 @@ export default function Wordle() {
 
     }
 
-   
 
     function submitGuess() {
 
@@ -138,6 +159,10 @@ export default function Wordle() {
             .join("");
 
         const newBoard = gameBoard.map(row =>
+            row.map(cell => ({...cell}))
+        );
+
+        const alphabetClone = alphabet.map(row =>
             row.map(cell => ({...cell}))
         );
 
@@ -159,6 +184,8 @@ export default function Wordle() {
         for (let c = 0; c < colCount; c++) {
 
             if (newBoard[currentRow][c].status === "correct") {
+                changeColor(newBoard[currentRow][c].letter, alphabetClone, answer,"correct");
+
                 continue;
             }
 
@@ -170,10 +197,13 @@ export default function Wordle() {
                     guess[c],
                     ""
                 );
+                changeColor(newBoard[currentRow][c].letter, alphabetClone, answer,"present")
 
             } else {
 
                 newBoard[currentRow][c].status = "absent";
+
+                changeColor(newBoard[currentRow][c].letter, alphabetClone, answer,"absent");
             }
         }
 
@@ -192,10 +222,54 @@ export default function Wordle() {
 
 
         setGameBoard(newBoard);
+        setAlphabet(alphabetClone);
 
 
     }
 
+    function changeColor(letter: string, board: letterBoard, answer: string,status: string) {
+
+
+        if (status === "correct")  {
+
+            for (let i = 0; i < rowCount; i++) {
+                for (let j = 0; j < colCount; j++) {
+                    if (board[i][j].letter === letter) {
+                        if (board[i][j].color !== "bg-wordle-correct") {
+                            board[i][j].color = "bg-wordle-correct";
+                            return;
+                        }
+
+                    }
+                }
+            }
+        } else if(status === "absent")  {
+            for (let i = 0; i < rowCount; i++) {
+                for (let j = 0; j < colCount; j++) {
+                    if (board[i][j].letter === letter) {
+                        if (board[i][j].color !== "bg-danger") {
+                            board[i][j].color = "bg-danger";
+                            return;
+                        }
+
+                    }
+                }
+            }
+        }else if(status === "present")  {
+            for (let i = 0; i < rowCount; i++) {
+                for (let j = 0; j < colCount; j++) {
+                    if (board[i][j].letter === letter) {
+                        if (board[i][j].color !== "bg-wordle-present") {
+                            board[i][j].color = "bg-wordle-present";
+                            return;
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
 
     async function newGame() {
         setGameBoard(
@@ -204,6 +278,18 @@ export default function Wordle() {
                     letter: "",
                     status: ""
                 }))));
+
+        let charCode = 65;
+        setAlphabet(
+            Array.from({length: rowCount}, () =>
+                Array.from({length: colCount}, () => {
+                    const letter = charCode <= 90 ? String.fromCharCode(charCode++) : "";
+                    return {
+                        letter,
+                        color: "bg-wordle-absent",
+                    };
+                })
+            ));
 
 
         setCurrentRow(0);
@@ -241,7 +327,7 @@ export default function Wordle() {
     return (
 
 
-        <div className="justify-self-center items-center gap-6 mt-10">
+        <div className="flex items-center flex-row gap-6 mt-10">
 
             <div>
                 {Array.from({length: rowCount}).map((_, rowIndex) => (
@@ -249,7 +335,7 @@ export default function Wordle() {
                         {Array.from({length: colCount}).map((_, colIndex) => (
                             <div key={`${rowIndex} ${colIndex}`} className={`w-[128px] h-[128px]
                      border border-border rounded ${getCellColor(gameBoard[rowIndex][colIndex].status)}
-                     text-white text-2xl font-bold flex 
+                     text-white text-5xl font-bold flex 
                      items-center justify-center uppercase mb-2
                       ${youWin && rowIndex === currentRow ? "wordle-win" : ""}
                      `}>
@@ -263,7 +349,27 @@ export default function Wordle() {
 
             </div>
 
-            <button className="btn-game " onClick={newGame}>Again!</button>
+
+            <div className="flex flex-col gap-6">
+                <button className="btn-game " onClick={newGame}>Again!</button>
+                <div>
+                    {Array.from({length: rowCount}).map((_, rowIndex) => (
+                        <div key={rowIndex} className="flex flex-row gap-2">
+                            {Array.from({length: colCount}).map((_, colIndex) => (
+                                <div key={`${rowIndex} ${colIndex}`} className={`w-[32px] h-[32px]
+                     border border-border rounded ${alphabet[rowIndex][colIndex].color}
+                     text-white text-xl font-bold flex 
+                     items-center justify-center uppercase mb-2
+                     `}>
+                                    {alphabet[rowIndex][colIndex].letter}
+
+                                </div>
+                            ))}
+
+                        </div>
+                    ))}
+                </div>
+            </div>
 
 
         </div>

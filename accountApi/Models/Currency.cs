@@ -2,8 +2,8 @@ namespace AccountApi.Models;
 
 public enum Currency
 {
-    USD,
-    EUR,
-    TRY,
-    GBP
+    Usd,// 0
+    Eur,// 1
+    Try,//2
+    Gbp//3
 }

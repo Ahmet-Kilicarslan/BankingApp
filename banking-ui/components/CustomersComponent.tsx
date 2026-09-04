@@ -49,13 +49,14 @@ export default  function CustomersComponent({customers}: { customers: Customer[]
 
                     </div>
 
+                    {/*
                     {expandedId === customer.id && (
                         <div className="bg-surface border-x border-b border-border rounded-b-lg p-4">
                             <AccountsPanel accounts={cachedAccounts[customer.id]} />
                         </div>
                         
                     )}
-                    
+                    */}
                     
                     
                 </div>

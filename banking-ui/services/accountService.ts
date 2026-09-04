@@ -28,7 +28,7 @@ export async function getAllAccounts():Promise<Account[]>{
 const url = `${baseUrl}/api/account`;
 
 
-return apiclient<Account[]>(url);
+return apiClient<Account[]>(url);
 
 }
 
