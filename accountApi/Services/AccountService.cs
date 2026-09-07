@@ -24,51 +24,53 @@ public class AccountService : IAccountService
         _tokenService = tokenService;
     }
 
-    public async Task<Account?> GetAccountById(int Id)
+    public async Task<Account?> GetAccountById(int id)
     {
-        return await _accountRepository.GetAccountById(Id);
+        return await _accountRepository.GetAccountById(id);
     }
+
 
     public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
     {
         return await _accountRepository.GetAccountsByCustomerId(customerId);
     }
 
+    public async Task<Account?> GetAccountByAccountNo(int accountNo)
+    {
+        return await _accountRepository.GetAccountByAccountNo(accountNo);
+    }
+
     public async Task<List<AccountDetailsDto>> GetAllAccounts()
     {
-        var accounts= await _accountRepository.GetAllAccounts();
-        
+        var accounts = await _accountRepository.GetAllAccounts();
+
         var tasks = accounts.Select(async account =>
         {
             var customerName = await GetCustomerName(account.CustomerId);
-        
-            return new AccountDetailsDto(
-                id: account.Id,
-                accountNo: account.AccountNo,
-                customerName: customerName,
-                balance: account.Balance,
-                openedAt: account.OpenedAt
-            );
+
+            account.CustomerName = customerName;
+
+            return account;
         });
 
         var accountDetailsArray = await Task.WhenAll(tasks);
-    
+
         return accountDetailsArray.ToList();
     }
+
     private async Task<string> GetCustomerName(int customerId)
     {
-        var httpClient =_httpClientFactory.CreateClient("CustomerApi");
-        
+        var httpClient = _httpClientFactory.CreateClient("CustomerApi");
+
         var token = await _tokenService.GetTokenAsync();
-        
+
         httpClient.DefaultRequestHeaders.Authorization =
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        
+
         var response = await httpClient.GetAsync($"/api/customer/{customerId}");
         var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
-        
+
         return customer.Name;
-        
     }
 
     public async Task<Account> CreateAccount(int customerId)
@@ -85,29 +87,32 @@ public class AccountService : IAccountService
     }
 
 
-    public async Task UpdateBalance(BalanceUpdateDto balanceUpdateDto)
+    public async Task UpdateBalance(AccountBalanceOperationDto dto)
     {
-        var account = await _accountRepository.GetAccountById(balanceUpdateDto.AccountId);
+        var account = await _accountRepository.GetAccountById(dto.AccountNo);
 
         if (account == null)
         {
             throw new InvalidOperationException("Account doesn't exist!");
         }
 
-        if (balanceUpdateDto.TransactionTypeId == 1) //Deposit
+        if (dto.Role == BalanceOperationRole.Receiver)
         {
-            account.Balance += balanceUpdateDto.Amount;
+            account.Balance += dto.Amount;
         }
-        else if (balanceUpdateDto.TransactionTypeId == 2) //Withdraw
+        else if (dto.Role == BalanceOperationRole.Sender)
         {
-            if (account.Balance < balanceUpdateDto.Amount)
+            if (account.Balance < dto.Amount)
             {
-                throw new InvalidOperationException("Unsufficient balance!");
+                throw new InvalidOperationException($"Balance {account.Balance} is less than  {dto.Amount}");
             }
 
-            account.Balance -= balanceUpdateDto.Amount;
+            account.Balance -= dto.Amount;
         }
-        else throw new ArgumentException("Invalid transaction type.");
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(dto.Role), dto.Role, "Unhandled balance operation role.");
+        }
 
 
         await _accountRepository.SaveChangesAsync();
@@ -127,6 +132,4 @@ public class AccountService : IAccountService
 
         return response.IsSuccessStatusCode;
     }
-
-
 }

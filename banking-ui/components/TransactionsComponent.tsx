@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowDownLeft, ArrowUpRight } from 'lucide-react';
-import Transaction from "../models/transaction";
+import {Transaction} from "../models/transaction";
 
 export default function TransactionsComponent({ transactions }: { transactions: Transaction[] }) {
     return (
@@ -13,7 +13,7 @@ export default function TransactionsComponent({ transactions }: { transactions: 
                     <div
                         key={transaction.id}
                         className="flex items-center justify-between bg-surface border border-border rounded-lg
-                        p-4 cursor-pointer transition-colors
+                        p-4 cursor-pointer transition-colors card-hover
                         hover:border-text-muted"
                     >
                         <div className="flex items-center gap-3">

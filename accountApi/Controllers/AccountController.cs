@@ -43,7 +43,16 @@ public class AccountController : ControllerBase
         
         
     }
-    
+
+    [Authorize]
+    [HttpGet("account-no/{accountNo}")]
+    public async Task<IActionResult> GetAccountByAccountNo(int accountNo)
+    {
+        
+        var account = await _accountService.GetAccountByAccountNo(accountNo);
+        if(account == null) return NotFound();
+        return Ok(account);
+    }
     
 
     [HttpGet]
@@ -70,12 +79,12 @@ public class AccountController : ControllerBase
     [Authorize]
     [HttpPost("update-balance")]
 
-    public async Task<IActionResult> UpdateBalance([FromBody] BalanceUpdateDto balanceUpdateDto)
+    public async Task<IActionResult> UpdateBalance([FromBody] AccountBalanceOperationDto dto)
     {
-        await _accountService.UpdateBalance(balanceUpdateDto);
+        await _accountService.UpdateBalance(dto);
 
 
-        return Ok(balanceUpdateDto);
+        return Ok(dto);
     }
 
 

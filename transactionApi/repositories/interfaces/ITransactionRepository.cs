@@ -12,7 +12,7 @@ public Task<List<Transaction>> GetAllTransactions();
 public Task CreateTransaction(Transaction transaction);
 
 
-public Task<string> GetTransactionTypeName(int transactionTypeId);
+public Task<TransactionType?> GetTransactionType(int transactionTypeId);
  public Task SaveChangesAsync();
 
 }

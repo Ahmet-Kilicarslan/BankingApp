@@ -6,13 +6,15 @@ namespace AccountApi.Services.Interfaces;
 public interface IAccountService
 {
 
-    Task<Account?> GetAccountById(int Id);
+    Task<Account?> GetAccountById(int id);
+    
+    Task<Account?> GetAccountByAccountNo(int accountNo);
 
     Task<List<Account>> GetAccountsByCustomerId(int customerId);
     
     Task<Account> CreateAccount(int customerId);
 
-    Task UpdateBalance(BalanceUpdateDto balanceUpdateDto);
+    Task UpdateBalance(AccountBalanceOperationDto dto);
 
     Task<List<AccountDetailsDto>> GetAllAccounts();
 }

@@ -8,35 +8,58 @@ namespace AccountApi.Repositories;
 
 public class AccountRepository : IAccountRepository
 {
-
-
     private readonly AccountDbContext _context;
 
     public AccountRepository(AccountDbContext context)
     {
         _context = context;
     }
-    
-    
+
 
     public async Task<Account?> GetAccountById(int Id)
     {
-
         return await _context.Accounts.FindAsync(Id);
     }
 
     public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
     {
+        List<Account> accountList =
+            await _context.Accounts.Where(account => account.CustomerId == customerId).ToListAsync();
 
-        List<Account> accountList = await _context.Accounts.Where(account => account.CustomerId == customerId).ToListAsync();
-        
         return accountList;
-
     }
 
-    public async Task<List<Account>> GetAllAccounts()
+
+    public async Task<Account?> GetAccountByAccountNo(int accountNo)
     {
-        List<Account> accountList = await _context.Accounts.ToListAsync();
+        return await _context.Accounts
+            .SingleOrDefaultAsync(a => a.AccountNo == accountNo);        
+        
+    }
+
+    public async Task<List<AccountDetailsDto>> GetAllAccounts()
+    {
+        List<Account> accounts = await _context.Accounts
+            .Include(a => a.Currency)
+            .Include(a => a.Bank)
+            .ToListAsync();
+
+        List<AccountDetailsDto> accountList = new List<AccountDetailsDto>();
+
+        foreach (Account account in accounts)
+        {
+            var accountDetails = new AccountDetailsDto(
+                account.Id,
+                account.AccountNo,
+                account.CustomerId,
+                null,
+                account.Balance,
+                account.Currency.Name,
+                account.Bank.Name,
+                account.OpenedAt
+            );
+            accountList.Add(accountDetails);
+        }
 
         return accountList;
     }
@@ -51,7 +74,7 @@ public class AccountRepository : IAccountRepository
         };
 
         await _context.AddAsync(account);
-        
+
         return account;
     }
 
@@ -59,17 +82,10 @@ public class AccountRepository : IAccountRepository
     private int GenerateAccountNo()
     {
         return Random.Shared.Next(100000, 1000000);
-
     }
 
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
     }
-
-  
-   
-
-
-
 }

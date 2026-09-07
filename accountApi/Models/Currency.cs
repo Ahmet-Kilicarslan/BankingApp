@@ -1,9 +1,9 @@
 namespace AccountApi.Models;
 
-public enum Currency
+public class Currency
 {
-    Usd,// 0
-    Eur,// 1
-    Try,//2
-    Gbp//3
+ 
+    public int Id {get;set;}
+    public string Name {get;set;}
+    
 }

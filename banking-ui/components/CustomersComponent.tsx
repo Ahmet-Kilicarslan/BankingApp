@@ -25,7 +25,7 @@ export default  function CustomersComponent({customers}: { customers: Customer[]
     }
 
     return (
-        <div className="flex flex-col gap-3 -mb-5">
+        <div className="flex flex-col gap-3 -mb-5 ">
             <div className="flex justify-between items-center px-4 text-text-muted text-xs uppercase">
                 <span className="w-1/4">Name</span>
                 <span className="w-1/4">Email</span>
@@ -37,7 +37,7 @@ export default  function CustomersComponent({customers}: { customers: Customer[]
                     key={customer.id}
                     onClick={() => toggleCustomer(customer.id)}
                     className="w-full bg-surface border border-border rounded-lg
-                p-4 cursor-pointer 
+                p-4 cursor-pointer card-hover
                 hover:border-text-muted"
                 >
                     <div className="grid grid-cols-4 items-center gap-4">

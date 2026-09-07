@@ -3,7 +3,7 @@
 <Project Path="customerApi/customerApi.csproj" />
 </Folder>
   <Folder Name="/transactionApi/">
-   <Project Path="transactionApi/transaction.csproj" />
+   <Project Path="transactionApi/transactionApi.csproj" />
   </Folder>
  <Folder Name="/authApi/">
   <Project Path="authApi/authApi.csproj" />

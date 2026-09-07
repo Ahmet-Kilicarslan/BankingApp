@@ -12,6 +12,8 @@ public class Account
     public required int CustomerId { get; set; }
     public required decimal Balance { get; set; }
     
+    public int? CurrencyId { get; set; }
+    
     public Currency? Currency { get; set; }
     public DateTime OpenedAt { get; set; } = DateTime.UtcNow;
 
