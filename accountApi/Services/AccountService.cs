@@ -30,7 +30,7 @@ public class AccountService : IAccountService
     }
 
 
-    public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
+    public async Task<List<AccountDetailsDto>> GetAccountsByCustomerId(int customerId)
     {
         return await _accountRepository.GetAccountsByCustomerId(customerId);
     }
@@ -89,7 +89,7 @@ public class AccountService : IAccountService
 
     public async Task UpdateBalance(AccountBalanceOperationDto dto)
     {
-        var account = await _accountRepository.GetAccountById(dto.AccountNo);
+        var account = await _accountRepository.GetAccountByAccountNo(dto.AccountNo);
 
         if (account == null)
         {

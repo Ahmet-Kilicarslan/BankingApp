@@ -64,5 +64,19 @@ async function apiClient<T>(Url:string,options:RequestOptions={}): Promise<T> {
       
 }
 
+export function getErrorMessage(err: unknown): string {
+    if (err instanceof ApiError) {
+        switch (err.status) {
+            case 409:
+                return "This transfer couldn't be completed — please check the account details.";
+            case 400:
+                return "Invalid transfer details. Please check the amount and account number.";
+            default:
+                return err.message || "Something went wrong. Please try again.";
+        }
+    }
+    return "Network error — please check your connection and try again.";
+}
 
-export {apiClient,handleResponse};
+
+export {apiClient,handleResponse,getErrorMessage};

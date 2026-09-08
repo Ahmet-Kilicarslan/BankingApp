@@ -21,10 +21,30 @@ public class AccountRepository : IAccountRepository
         return await _context.Accounts.FindAsync(Id);
     }
 
-    public async Task<List<Account>> GetAccountsByCustomerId(int customerId)
+    public async Task<List<AccountDetailsDto>> GetAccountsByCustomerId(int customerId)
     {
-        List<Account> accountList =
-            await _context.Accounts.Where(account => account.CustomerId == customerId).ToListAsync();
+        List<Account> accounts =
+            await _context.Accounts.Where(account => account.CustomerId == customerId)
+                .Include(a => a.Currency)
+                .Include(a => a.Bank)
+                .ToListAsync();
+
+        List<AccountDetailsDto> accountList = new List<AccountDetailsDto>();
+
+        foreach (Account account in accounts)
+        {
+            var accountDetails = new AccountDetailsDto(
+                account.Id,
+                account.AccountNo,
+                account.CustomerId,
+                null,
+                account.Balance,
+                account.Currency.Name,
+                account.Bank.Name,
+                account.OpenedAt
+            );
+            accountList.Add(accountDetails);
+        }
 
         return accountList;
     }
@@ -33,8 +53,7 @@ public class AccountRepository : IAccountRepository
     public async Task<Account?> GetAccountByAccountNo(int accountNo)
     {
         return await _context.Accounts
-            .SingleOrDefaultAsync(a => a.AccountNo == accountNo);        
-        
+            .SingleOrDefaultAsync(a => a.AccountNo == accountNo);
     }
 
     public async Task<List<AccountDetailsDto>> GetAllAccounts()

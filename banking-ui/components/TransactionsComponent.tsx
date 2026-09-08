@@ -1,13 +1,15 @@
 'use client';
 
 import { ArrowDownLeft, ArrowUpRight } from 'lucide-react';
-import {Transaction} from "../models/transaction";
+import { Transaction } from "../models/transaction";
 
 export default function TransactionsComponent({ transactions }: { transactions: Transaction[] }) {
     return (
         <div className="flex flex-col gap-2 m-4">
             {transactions.map((transaction: Transaction) => {
-                const isDeposit = transaction.transactionType === "Deposit";
+                const isDestinationRequired: boolean = transaction.transactionType.isDestinationRequired;
+
+                const isDeposit: boolean = transaction.transactionType.name === "Deposit";
 
                 return (
                     <div
@@ -25,8 +27,13 @@ export default function TransactionsComponent({ transactions }: { transactions: 
                             <div className="flex flex-col gap-1">
                                 <p className="text-text-primary">{transaction.customerName}</p>
                                 <p className="text-text-muted text-sm">
-                                    Account {transaction.accountNo} · {transaction.transactionType}
+                                    Account {transaction.accountNo} · {transaction.transactionType.name}
                                 </p>
+                                {isDestinationRequired == true  && (
+                                    <p className="text-text-muted text-sm">
+                                        To: {transaction.destinationAccountNo}
+                                    </p>
+                                )}
                             </div>
                         </div>
 

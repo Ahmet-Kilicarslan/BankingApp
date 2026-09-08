@@ -29,18 +29,15 @@ public class TransactionService : ITransactionService
     }
 
 
-    public async Task<List<Transaction>> GetAllTransactions()
-    {
-        return await _transactionRepository.GetAllTransactions();
-    }
-
-
     public async Task<Transaction> CreateTransaction(TransactionInitiationDto transactionDto)
     {
         var transactionType = await _transactionRepository.GetTransactionType(transactionDto.TransactionTypeId);
 
         var sourceAccount = await GetAccountDetailsByAccountNo(transactionDto.AccountNo);
-        var destinationAccount = await GetAccountDetailsByAccountNo(transactionDto.DestinationAccountNo);
+
+        
+        
+        var destinationAccount = await GetAccountDetailsByAccountNo(transactionDto.DestinationAccountNo ?? 0);
 
 
         if (transactionType.RequiresDestinationAccount == false)
@@ -142,7 +139,6 @@ public class TransactionService : ITransactionService
             var customerDetails = await GetCustomerDetailsByCustomerId(accountDetails.CustomerId);
             var trans = await GetTransactionType(item.TransactionTypeId);
 
-            var transTypeName = trans.Name;
 
             var transDetail = new TransactionDetailsDto
             {
@@ -150,7 +146,7 @@ public class TransactionService : ITransactionService
                 CustomerName = customerDetails.Name,
                 AccountNo = accountDetails.AccountNo,
                 DestinationAccountNo = item.DestinationAccountNo,
-                TransactionTypeName = transTypeName,
+                TransactionType = trans,
                 Amount = item.Amount,
                 TransactionDate = item.TransactionDate
             };
@@ -159,11 +155,16 @@ public class TransactionService : ITransactionService
         }
 
 
-
         return transDetailsList;
     }
 
 
+
+    public async Task<List<TransactionType>> GetAllTransactionTypes()
+    {
+        
+        return await _transactionRepository.GetAllTransactionTypes();
+    }
     private async Task<TransactionType> GetTransactionType(int transactionTypeId)
     {
         return await _transactionRepository.GetTransactionType(transactionTypeId);
@@ -192,7 +193,7 @@ public class TransactionService : ITransactionService
         httpClient.DefaultRequestHeaders.Authorization =
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        var response = await httpClient.GetAsync($"/api/account/account-no/{accountNo}");
+        var response = await httpClient.GetAsync($"/api/account/by-account-no/{accountNo}");
 
         return await response.Content.ReadFromJsonAsync<AccountDetailsDto>()
                ?? throw new InvalidOperationException($"Account {accountNo} returned an empty response.");

@@ -11,7 +11,7 @@ public Task<List<Transaction>> GetAllTransactions();
 
 public Task CreateTransaction(Transaction transaction);
 
-
+public Task<List<TransactionType>>  GetAllTransactionTypes();
 public Task<TransactionType?> GetTransactionType(int transactionTypeId);
  public Task SaveChangesAsync();
 

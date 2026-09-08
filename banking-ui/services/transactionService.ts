@@ -1,4 +1,4 @@
-import {Transaction} from "../models/transaction";
+import {Transaction,TransactionInitiationDto,TransactionType} from "../models/transaction";
 
 import {apiClient} from "./handleResponse";
 
@@ -24,7 +24,7 @@ export async function GetAllTransactions():Promise<Transaction[]> {
     
 }
 
-export async function createTransaction(data:Omit<Transaction,"id">):Promise<Transaction>  {
+export async function createTransaction(dto:TransactionInitiationDto):Promise<Transaction>  {
     
     const Url = `×${baseUrl}/api/transaction`;
     return apiClient<Transaction>(Url,{
@@ -32,5 +32,13 @@ export async function createTransaction(data:Omit<Transaction,"id">):Promise<Tra
         body: JSON.stringify(data),
     })
     
+    
+}
+
+export async function getAllTransactionTypes():Promise<TransactionType[]> {
+    
+    const Url = `${baseUrl}/api/transaction/transaction-types`;
+    
+    return apiClient<TransactionType[]>(Url);
     
 }

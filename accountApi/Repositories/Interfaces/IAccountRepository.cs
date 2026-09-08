@@ -10,7 +10,7 @@ public interface IAccountRepository
     
     Task<Account?> GetAccountByAccountNo(int AccountNo);
 
-    Task<List<Account>> GetAccountsByCustomerId(int customerId);
+    Task<List<AccountDetailsDto>> GetAccountsByCustomerId(int customerId);
      
     Task<List<AccountDetailsDto>> GetAllAccounts();
      

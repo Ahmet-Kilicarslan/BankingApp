@@ -15,6 +15,12 @@ export async function getAccountById(accountId:number):Promise<Account>{
  
 }
 
+
+export async function getAccountByAccountNo(accountNo:number):Promise<Account>{
+    const url = `${baseUrl}/api/account/by-account-no/${accountNo}`;
+    
+    return apiClient<Account>(url);
+}
 export async function getAccountsByCustomerId(customerId:number):Promise<Account[]>{
     
     const url = `${baseUrl}/api/account/customer/${customerId}`;

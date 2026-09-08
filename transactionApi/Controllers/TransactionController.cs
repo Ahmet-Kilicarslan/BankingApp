@@ -50,6 +50,15 @@ public class TransactionController : ControllerBase
 
     }
 
+    [HttpGet("transaction-types")]
+    public async Task<IActionResult> GetTransactionTypes()
+    {
+
+        var response = await _transactionService.GetAllTransactionTypes();
+        
+        return Ok(response);
+    }
+    
 
 
 }

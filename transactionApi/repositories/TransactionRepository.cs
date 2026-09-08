@@ -29,7 +29,15 @@ public async Task<List<Transaction>> GetAllTransactions()
 
     }
 
-public async Task CreateTransaction(Transaction transaction){
+
+    public async  Task<List<TransactionType>> GetAllTransactionTypes()
+    {
+        List<TransactionType> TransactionTypeList = await _context.TransactionTypes.ToListAsync();
+        
+        return TransactionTypeList;
+    }
+
+    public async Task CreateTransaction(Transaction transaction){
 
      await _context.AddAsync(transaction);
 }
