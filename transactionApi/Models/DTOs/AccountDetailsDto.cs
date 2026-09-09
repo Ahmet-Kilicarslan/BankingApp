@@ -7,6 +7,7 @@ public class AccountDetailsDto
     public  int AccountNo { get; set; }
     public  int CustomerId { get; set; }
     
+    
     public decimal Balance { get; set; }
 }
 

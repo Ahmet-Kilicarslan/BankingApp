@@ -5,6 +5,7 @@ using TransactionApi.Repositories.Interfaces;
 using TransactionApi.Services;
 using TransactionApi.Services.Interfaces;
 using TransactionApi.Middleware;
+using TransactionApi.Services.Strategies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+
+builder.Services.AddScoped<WithdrawStrategy>();
+builder.Services.AddScoped<DepositStrategy>();
+builder.Services.AddScoped<VirmanStrategy>();
+builder.Services.AddScoped<HavaleStrategy>();
+builder.Services.AddScoped<EftStrategy>();
+builder.Services.AddScoped<FastStrategy>();
+
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 

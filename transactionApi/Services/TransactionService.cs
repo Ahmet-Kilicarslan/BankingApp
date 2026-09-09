@@ -2,128 +2,57 @@ using TransactionApi.Models;
 using TransactionApi.Repositories.Interfaces;
 using TransactionApi.Services.Interfaces;
 using TransactionApi.Models.DTOs;
+using TransactionApi.Services.ApiClients;
+using TransactionApi.Services.Strategies;
 
 namespace TransactionApi.Services;
 
 public class TransactionService : ITransactionService
 {
     private readonly ITransactionRepository _transactionRepository;
+    
+    private readonly AccountApiClient _accountApiClient;
 
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    private readonly TokenService _tokenService;
+    private readonly CustomerApiClient _customerApiClient;
 
 
-    public TransactionService(ITransactionRepository transactionRepository, IHttpClientFactory httpClientFactory,
-        TokenService tokenService)
+    private readonly TransactionStrategyResolver _transactionStrategyResolver;
+
+    public TransactionService(
+        ITransactionRepository transactionRepository,
+        AccountApiClient accountApiClient,
+        CustomerApiClient customerApiClient,
+        TransactionStrategyResolver transactionStrategyResolver)
     {
         _transactionRepository = transactionRepository;
-        _httpClientFactory = httpClientFactory;
-        _tokenService = tokenService;
-    }
-
-
-    public async Task<Transaction?> GetTransactionbyId(int Id)
-    {
-        return await _transactionRepository.GetTransactionById(Id);
+        _accountApiClient = accountApiClient;
+        _customerApiClient = customerApiClient;
+        _transactionStrategyResolver = transactionStrategyResolver;
     }
 
 
     public async Task<Transaction> CreateTransaction(TransactionInitiationDto transactionDto)
     {
-        var transactionType = await _transactionRepository.GetTransactionType(transactionDto.TransactionTypeId);
-
-        var sourceAccount = await GetAccountDetailsByAccountNo(transactionDto.AccountNo);
-
-        
-        
-        var destinationAccount = await GetAccountDetailsByAccountNo(transactionDto.DestinationAccountNo ?? 0);
+        var sourceAccount = await _accountApiClient.GetAccountDetailsByAccountNo(transactionDto.AccountNo);
 
 
-        if (transactionType.RequiresDestinationAccount == false)
-        {
-            if (transactionType.Name == "Withdraw" && sourceAccount.Balance < transactionDto.Amount)
-            {
-                throw new InvalidOperationException("Not enough balance.");
-            }
+        AccountDetailsDto? destinationAccount = transactionDto.DestinationAccountNo.HasValue
+            ? await _accountApiClient.GetAccountDetailsByAccountNo(transactionDto.DestinationAccountNo.Value)
+            : null;
 
+        var strategy = _transactionStrategyResolver.Resolve(transactionDto.TransactionTypeId);
 
-            var accountBalanceOperationDto = new AccountBalanceOperationDto(
-                sourceAccount.AccountNo,
-                transactionDto.Amount,
-                transactionDto.TransactionTypeId,
-                BalanceOperationRole.Receiver
-            );
-
-
-            await UpdateAccountBalance(accountBalanceOperationDto);
-        }
-
-        if (transactionType.RequiresDestinationAccount == true)
-        {
-            if (transactionType.IsInterBank == true)
-            {
-                if (sourceAccount.Balance < transactionDto.Amount)
-                {
-                    throw new InvalidOperationException("Not enough balance.");
-                }
-
-
-                var senderAccountBalanceOperationDto = new AccountBalanceOperationDto(
-                    sourceAccount.AccountNo,
-                    transactionDto.Amount,
-                    transactionDto.TransactionTypeId,
-                    BalanceOperationRole.Sender
-                );
-
-                await UpdateAccountBalance(senderAccountBalanceOperationDto);
-                var receiverAccountBalanceOperationDto = new AccountBalanceOperationDto(
-                    destinationAccount.AccountNo,
-                    transactionDto.Amount,
-                    transactionDto.TransactionTypeId,
-                    BalanceOperationRole.Receiver
-                );
-
-                await UpdateAccountBalance(receiverAccountBalanceOperationDto);
-            }
-            else if (transactionType.IsInterBank == false)
-            {
-                if (sourceAccount.Balance < transactionDto.Amount)
-                {
-                    throw new InvalidOperationException("Not enough balance.");
-                }
-
-                var senderAccountBalanceOperationDto = new AccountBalanceOperationDto(
-                    sourceAccount.AccountNo,
-                    transactionDto.Amount,
-                    transactionDto.TransactionTypeId,
-                    BalanceOperationRole.Sender
-                );
-
-
-                await UpdateAccountBalance(senderAccountBalanceOperationDto);
-                var receiverAccountBalanceOperationDto = new AccountBalanceOperationDto(
-                    destinationAccount.AccountNo,
-                    transactionDto.Amount,
-                    transactionDto.TransactionTypeId,
-                    BalanceOperationRole.Receiver
-                );
-
-                await UpdateAccountBalance(receiverAccountBalanceOperationDto);
-            }
-        }
-
-        var newTransaction = new Transaction(
-            sourceAccount.AccountNo,
-            destinationAccount.AccountNo,
-            transactionDto.Amount,
-            transactionDto.TransactionTypeId
-        );
+        var newTransaction = await strategy.Execute(transactionDto, sourceAccount, destinationAccount);
 
         await _transactionRepository.CreateTransaction(newTransaction);
         await _transactionRepository.SaveChangesAsync();
 
         return newTransaction;
+    }
+
+    public async Task<Transaction?> GetTransactionbyId(int Id)
+    {
+        return await _transactionRepository.GetTransactionById(Id);
     }
 
 
@@ -135,8 +64,8 @@ public class TransactionService : ITransactionService
 
         foreach (var item in transList)
         {
-            var accountDetails = await GetAccountDetailsByAccountNo(item.AccountNo);
-            var customerDetails = await GetCustomerDetailsByCustomerId(accountDetails.CustomerId);
+            var accountDetails = await _accountApiClient.GetAccountDetailsByAccountNo(item.AccountNo);
+            var customerDetails = await _customerApiClient.GetCustomerDetailsByCustomerId(accountDetails.CustomerId);
             var trans = await GetTransactionType(item.TransactionTypeId);
 
 
@@ -159,57 +88,15 @@ public class TransactionService : ITransactionService
     }
 
 
-
     public async Task<List<TransactionType>> GetAllTransactionTypes()
     {
-        
         return await _transactionRepository.GetAllTransactionTypes();
     }
+
     private async Task<TransactionType> GetTransactionType(int transactionTypeId)
     {
         return await _transactionRepository.GetTransactionType(transactionTypeId);
     }
 
-    private async Task<bool> UpdateAccountBalance(AccountBalanceOperationDto accountBalanceOperationDto)
-    {
-        var httpClient = _httpClientFactory.CreateClient("AccountApi");
-
-        var token = await _tokenService.GetTokenAsync();
-
-        httpClient.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-
-        var response = await httpClient.PostAsJsonAsync("/api/Account/Update-Balance", accountBalanceOperationDto);
-
-        return response.IsSuccessStatusCode;
-    }
-
-
-    private async Task<AccountDetailsDto> GetAccountDetailsByAccountNo(int accountNo)
-    {
-        var httpClient = _httpClientFactory.CreateClient("AccountApi");
-        var token = await _tokenService.GetTokenAsync();
-        httpClient.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-        var response = await httpClient.GetAsync($"/api/account/by-account-no/{accountNo}");
-
-        return await response.Content.ReadFromJsonAsync<AccountDetailsDto>()
-               ?? throw new InvalidOperationException($"Account {accountNo} returned an empty response.");
-    }
-
-
-    private async Task<CustomerDetailsDto> GetCustomerDetailsByCustomerId(int customerId)
-    {
-        var httpClient = _httpClientFactory.CreateClient("CustomerApi");
-        var token = await _tokenService.GetTokenAsync();
-        httpClient.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-        var response = await httpClient.GetAsync($"/api/customer/{customerId}");
-
-        return await response.Content.ReadFromJsonAsync<CustomerDetailsDto>()
-               ?? throw new InvalidOperationException($"Account {customerId} returned an empty response.");
-    }
+    
 }

@@ -1,10 +1,10 @@
 'use client';
 import {useState, useEffect} from 'react'
-import {X} from 'lucide-react'
+import {X,Check} from 'lucide-react'
 import Customer from "../models/customer"
 import Account from "../models/account"
 import {TransactionInitiationDto, TransactionType} from "../models/transaction"
-import {getAccountsByCustomerId, getAccountByAccountNo} from "../services/accountService"
+import {getAccountsByCustomerId, getAccountByAccountNoFast} from "../services/accountService"
 import {createTransaction, getAllTransactionTypes} from '../services/transactionService'
 import {getCustomerById} from "../services/customerService"
 import {getErrorMessage} from "../services/handleResponse"
@@ -66,7 +66,7 @@ export default function CreateTransactionPanel(
             }
             const destinationNo: number = Number(destinationAccountNo);
             try {
-                const result = await getAccountByAccountNo(destinationNo);
+                const result = await getAccountByAccountNoFast(destinationNo);
                 setDestinationAccount(result);
             } catch (err) {
                 console.error("Failed to fetch destination account:", err);
@@ -77,7 +77,7 @@ export default function CreateTransactionPanel(
         fetchDestinationAccount();
     }, [destinationAccountNo]);
 
-    useEffect(() => {
+   /* useEffect(() => {
         async function fetchDestinationCustomer() {
             if (!destinationAccount) {
                 setDestinationCustomer(undefined);
@@ -94,7 +94,7 @@ export default function CreateTransactionPanel(
 
         fetchDestinationCustomer();
     }, [destinationAccount])
-
+*/
     function getBankLogo(bankName: string) {
         switch (bankName) {
             case "AkBank":
@@ -160,10 +160,19 @@ export default function CreateTransactionPanel(
                                 onClick={() => setSelectedAccount(isSelected ? null : account)}
                                 className={`shrink-0 w-40 bg-surface border rounded-lg
                                     p-3 cursor-pointer transition-colors flex flex-col gap-3
+                                 
+                                 
                                     ${isSelected
-                                    ? "border-accent ring-2 ring-blue-200"
-                                    : "border-border hover:border-text-muted"}`}
+                                    ? "border-accent bg-accent/10 shadow-lg scale-[1.02]"
+                                    : "border-border "
+                                }`}
                             >
+                                {isSelected && (
+                                    <div className="absolute top-2 right-2 rounded-full bg-wordle-correct p-1">
+                                        <Check size={12} className="text-white" />
+                                    </div>
+                                )}
+
                                 <div className="bg-text-primary p-2 rounded-md flex items-center gap-3 h-8">
                                     <Image
                                         src={getBankLogo(account.bankName)}

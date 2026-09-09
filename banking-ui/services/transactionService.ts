@@ -26,12 +26,12 @@ export async function GetAllTransactions():Promise<Transaction[]> {
 
 export async function createTransaction(dto:TransactionInitiationDto):Promise<Transaction>  {
     
-    const Url = `×${baseUrl}/api/transaction`;
+    const Url = `${baseUrl}/api/transaction`;
     return apiClient<Transaction>(Url,{
         method:'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(dto),
     })
-    
+
     
 }
 

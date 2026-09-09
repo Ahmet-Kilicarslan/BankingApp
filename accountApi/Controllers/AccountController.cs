@@ -54,6 +54,14 @@ public class AccountController : ControllerBase
         return Ok(account);
     }
     
+    [HttpGet("account-no/{accountNo}")]
+    public async Task<IActionResult> GetAccountByAccountNoWithoutAuth(int accountNo)
+    {
+        
+        var account = await _accountService.GetAccountByAccountNo(accountNo);
+        if(account == null) return NotFound();
+        return Ok(account);
+    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllAccounts()
