@@ -52,8 +52,32 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Account?> GetAccountByAccountNo(int accountNo)
     {
-        return await _context.Accounts
-            .SingleOrDefaultAsync(a => a.AccountNo == accountNo);
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNo == accountNo);
+
+        
+    }
+
+    public async Task<AccountDetailsDto?> GetAccountDetailsByAccountNo(int accountNo)
+    {
+        
+        var account =   await _context.Accounts
+            .Include(a => a.Currency)
+            .Include(a => a.Bank)
+            .FirstOrDefaultAsync(a => a.AccountNo == accountNo);
+        
+        var accountDetails = new AccountDetailsDto(
+            account.Id,
+            account.AccountNo,
+            account.CustomerId,
+            null,
+            account.Balance,
+            account.Currency.Name,
+            account.Bank.Name,
+            account.OpenedAt
+        );
+        
+        return accountDetails;
+      
     }
 
     public async Task<List<AccountDetailsDto>> GetAllAccounts()

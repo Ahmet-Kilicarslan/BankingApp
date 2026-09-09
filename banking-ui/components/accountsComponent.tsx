@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Account from "../models/account"
 
-import {getAllAccounts} from "../services/accountService"
 
 
 export default function accountsComponent({accounts}: { accounts: Account[] }) {

@@ -8,7 +8,8 @@ public interface IAccountRepository
 
     Task<Account?> GetAccountById(int Id);
     
-    Task<Account?> GetAccountByAccountNo(int AccountNo);
+    Task<AccountDetailsDto?> GetAccountDetailsByAccountNo(int AccountNo);
+    Task<Account?> GetAccountByAccountNo(int accountNo);
 
     Task<List<AccountDetailsDto>> GetAccountsByCustomerId(int customerId);
      

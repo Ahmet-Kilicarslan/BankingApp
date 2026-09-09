@@ -21,7 +21,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddScoped<IAccountService,AccountService>();
 builder.Services.AddScoped<TokenService>();
-
+builder.Services.AddScoped<CustomerApiClient>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 

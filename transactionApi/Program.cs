@@ -5,6 +5,7 @@ using TransactionApi.Repositories.Interfaces;
 using TransactionApi.Services;
 using TransactionApi.Services.Interfaces;
 using TransactionApi.Middleware;
+using TransactionApi.Services.ApiClients;
 using TransactionApi.Services.Strategies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +42,10 @@ builder.Services.AddScoped<VirmanStrategy>();
 builder.Services.AddScoped<HavaleStrategy>();
 builder.Services.AddScoped<EftStrategy>();
 builder.Services.AddScoped<FastStrategy>();
+builder.Services.AddScoped<AccountApiClient>();
+builder.Services.AddScoped<CustomerApiClient>();
+
+builder.Services.AddScoped<TransactionStrategyResolver>();
 
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();

@@ -11,17 +11,16 @@ namespace AccountApi.Services;
 public class AccountService : IAccountService
 {
     private readonly IAccountRepository _accountRepository;
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    private readonly TokenService _tokenService;
+    private readonly CustomerApiClient _customerApiClient;
 
 
-    public AccountService(IAccountRepository accountRepository, IHttpClientFactory httpClientFactory,
-        TokenService tokenService)
+    public AccountService(
+        IAccountRepository accountRepository
+        , CustomerApiClient customerApiClient
+    )
     {
         _accountRepository = accountRepository;
-        _httpClientFactory = httpClientFactory;
-        _tokenService = tokenService;
+        _customerApiClient = customerApiClient;
     }
 
     public async Task<Account?> GetAccountById(int id)
@@ -35,10 +34,21 @@ public class AccountService : IAccountService
         return await _accountRepository.GetAccountsByCustomerId(customerId);
     }
 
+    public async Task<AccountDetailsDto?> GetAccountDetailsByAccountNo(int accountNo)
+    {
+        var accountDetails = await _accountRepository.GetAccountDetailsByAccountNo(accountNo);
+
+        var customerName = await _customerApiClient.GetCustomerName(accountDetails.CustomerId);
+
+        accountDetails.CustomerName = customerName;
+        return accountDetails;
+    }
+
     public async Task<Account?> GetAccountByAccountNo(int accountNo)
     {
         return await _accountRepository.GetAccountByAccountNo(accountNo);
     }
+
 
     public async Task<List<AccountDetailsDto>> GetAllAccounts()
     {
@@ -46,7 +56,7 @@ public class AccountService : IAccountService
 
         var tasks = accounts.Select(async account =>
         {
-            var customerName = await GetCustomerName(account.CustomerId);
+            var customerName = await _customerApiClient.GetCustomerName(account.CustomerId);
 
             account.CustomerName = customerName;
 
@@ -58,24 +68,10 @@ public class AccountService : IAccountService
         return accountDetailsArray.ToList();
     }
 
-    private async Task<string> GetCustomerName(int customerId)
-    {
-        var httpClient = _httpClientFactory.CreateClient("CustomerApi");
-
-        var token = await _tokenService.GetTokenAsync();
-
-        httpClient.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-        var response = await httpClient.GetAsync($"/api/customer/{customerId}");
-        var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
-
-        return customer.Name;
-    }
 
     public async Task<Account> CreateAccount(int customerId)
     {
-        if (!await CustomerExists(customerId))
+        if (!await _customerApiClient.CustomerExists(customerId))
         {
             throw new InvalidOperationException("Client does not exist");
         }
@@ -116,20 +112,5 @@ public class AccountService : IAccountService
 
 
         await _accountRepository.SaveChangesAsync();
-    }
-
-
-    private async Task<bool> CustomerExists(int customerId)
-    {
-        var httpClient = _httpClientFactory.CreateClient("CustomerApi");
-
-        var token = await _tokenService.GetTokenAsync();
-
-        httpClient.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-        var response = await httpClient.GetAsync($"/api/customer/{customerId}");
-
-        return response.IsSuccessStatusCode;
     }
 }

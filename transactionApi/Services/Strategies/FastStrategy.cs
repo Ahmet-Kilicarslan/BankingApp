@@ -21,6 +21,13 @@ public class FastStrategy : ITransactionStrategy
     public async Task<Transaction> Execute(TransactionInitiationDto transDto, AccountDetailsDto sourceAccount, AccountDetailsDto? destinationAccount)
     {
 
+        
+        if (sourceAccount.BankName == destinationAccount?.BankName &&
+            sourceAccount.Currency != destinationAccount.Currency)
+        {
+            throw new InvalidOperationException($"Invalid Destination Account  " ) ;
+
+        }
         var sourceOperationDto =  new AccountBalanceOperationDto(
             sourceAccount.AccountNo,
             transDto.Amount,  

@@ -37,7 +37,7 @@ public class WithdrawStrategy : ITransactionStrategy
         await _accountApiClient.UpdateAccountBalance(operationDto);
         
         return new Transaction(sourceAccount.AccountNo, null, transDto.Amount, transDto.TransactionTypeId);
-+    }
+ }
     
     
 }

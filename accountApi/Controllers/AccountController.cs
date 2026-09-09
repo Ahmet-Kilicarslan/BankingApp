@@ -49,16 +49,17 @@ public class AccountController : ControllerBase
     public async Task<IActionResult> GetAccountByAccountNo(int accountNo)
     {
         
-        var account = await _accountService.GetAccountByAccountNo(accountNo);
+        var account = await _accountService.GetAccountDetailsByAccountNo(accountNo);
         if(account == null) return NotFound();
         return Ok(account);
+        
     }
     
     [HttpGet("account-no/{accountNo}")]
     public async Task<IActionResult> GetAccountByAccountNoWithoutAuth(int accountNo)
     {
         
-        var account = await _accountService.GetAccountByAccountNo(accountNo);
+        var account = await _accountService.GetAccountDetailsByAccountNo(accountNo);
         if(account == null) return NotFound();
         return Ok(account);
     }

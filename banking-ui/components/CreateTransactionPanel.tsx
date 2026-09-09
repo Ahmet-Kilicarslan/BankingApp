@@ -1,6 +1,6 @@
 'use client';
 import {useState, useEffect} from 'react'
-import {X,Check} from 'lucide-react'
+import {X, Check,LoaderPinwheel} from 'lucide-react'
 import Customer from "../models/customer"
 import Account from "../models/account"
 import {TransactionInitiationDto, TransactionType} from "../models/transaction"
@@ -9,7 +9,7 @@ import {createTransaction, getAllTransactionTypes} from '../services/transaction
 import {getCustomerById} from "../services/customerService"
 import {getErrorMessage} from "../services/handleResponse"
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 export default function CreateTransactionPanel(
     {customer, onClose}: { customer: Customer; onClose: () => void }
 ) {
@@ -22,7 +22,7 @@ export default function CreateTransactionPanel(
     const [destinationCustomer, setDestinationCustomer] = useState<Customer>()
 
     const [amount, setAmount] = useState<string>("");
-    
+
     const [transactionTypes, setTransactionTypes] = useState<TransactionType[]>([])
     const [selectedTransactionType, setSelectedTransactionType] = useState<TransactionType | null>(null)
 
@@ -32,6 +32,14 @@ export default function CreateTransactionPanel(
     const isReady = !!selectedAccount && !!selectedTransactionType && amount > 0 &&
         (!selectedTransactionType.requiresDestinationAccount || !!destinationAccount);
 
+
+    type submitState = "idle" | "submitting" | "success";
+
+    const [submitState, setSubmitState] = useState<submitState>("idle")
+    
+    const router = useRouter();
+    
+    
     useEffect(() => {
         async function fetchTransactionTypes() {
             try {
@@ -77,24 +85,24 @@ export default function CreateTransactionPanel(
         fetchDestinationAccount();
     }, [destinationAccountNo]);
 
-   /* useEffect(() => {
-        async function fetchDestinationCustomer() {
-            if (!destinationAccount) {
-                setDestinationCustomer(undefined);
-                return;
-            }
-            try {
-                const result = await getCustomerById(destinationAccount.customerId);
-                setDestinationCustomer(result);
-            } catch (err) {
-                console.error("Failed to fetch destination customer:", err);
-                setDestinationCustomer(undefined);
-            }
-        }
-
-        fetchDestinationCustomer();
-    }, [destinationAccount])
-*/
+    /* useEffect(() => {
+         async function fetchDestinationCustomer() {
+             if (!destinationAccount) {
+                 setDestinationCustomer(undefined);
+                 return;
+             }
+             try {
+                 const result = await getCustomerById(destinationAccount.customerId);
+                 setDestinationCustomer(result);
+             } catch (err) {
+                 console.error("Failed to fetch destination customer:", err);
+                 setDestinationCustomer(undefined);
+             }
+         }
+ 
+         fetchDestinationCustomer();
+     }, [destinationAccount])
+ */
     function getBankLogo(bankName: string) {
         switch (bankName) {
             case "AkBank":
@@ -112,20 +120,24 @@ export default function CreateTransactionPanel(
 
     async function TransferMoney(dto: TransactionInitiationDto) {
         setError(null);
-        setIsSubmitting(true);
+        setSubmitState("submitting");
         try {
             await createTransaction(dto);
-            onClose();
+            setSubmitState("success");
+            setTimeout(() => {
+                onClose();
+                router.push("/accounts");
+            }, 3000);
         } catch (err) {
+            setSubmitState("idle"); 
             console.error(err);
             setError(getErrorMessage(err));
-        } finally {
-            setIsSubmitting(false);
-        }
+        } 
     }
 
     return (
-        <div className="relative flex flex-col w-[480px] max-w-[92vw] bg-background border border-border rounded-xl shadow-xl">
+        <div
+            className="relative flex flex-col w-[480px] max-w-[92vw] bg-background border border-border rounded-xl shadow-xl">
 
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border">
@@ -138,7 +150,7 @@ export default function CreateTransactionPanel(
                     className="text-text-muted hover:text-text-primary transition-colors rounded-md p-1"
                     aria-label="Close"
                 >
-                    <X size={18} />
+                    <X size={18}/>
                 </button>
             </div>
 
@@ -169,7 +181,7 @@ export default function CreateTransactionPanel(
                             >
                                 {isSelected && (
                                     <div className="absolute top-2 right-2 rounded-full bg-wordle-correct p-1">
-                                        <Check size={12} className="text-white" />
+                                        <Check size={12} className="text-white"/>
                                     </div>
                                 )}
 
@@ -262,10 +274,20 @@ export default function CreateTransactionPanel(
             {/* Footer */}
             <div className="px-6 py-4 border-t border-border mb-2">
                 <button
-                    className="btn-game w-full disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled={!isReady || isSubmitting}
+                    className={`
+        btn-game w-full
+        flex items-center justify-center
+        transition-all duration-1000 ease-in-out
+        disabled:cursor-not-allowed
+        ${submitState === "success"
+                        ? "bg-worlde-correct hover:bg-wordle-correct text-white"
+                        : "disabled:opacity-50"
+                    }
+    `}
+                    disabled={!isReady || submitState !== "idle"}
                     onClick={() => {
                         if (!isReady || !selectedAccount || !selectedTransactionType) return;
+
                         TransferMoney({
                             accountNo: selectedAccount.accountNo,
                             destinationAccountNo: destinationAccount?.accountNo ?? null,
@@ -274,7 +296,15 @@ export default function CreateTransactionPanel(
                         });
                     }}
                 >
-                    {isSubmitting ? "Sending..." : "Transfer"}
+                    {submitState === "submitting" && (
+                        <LoaderPinwheel className="animate-spin" />
+                    )}
+
+                    {submitState === "success" && (
+                        <Check className="animate-in zoom-in duration-300" />
+                    )}
+
+                    {submitState === "idle" && "Transfer"}
                 </button>
             </div>
 
