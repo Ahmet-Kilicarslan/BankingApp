@@ -16,14 +16,7 @@ dotnet run --project ./authApi/authApi.csproj &
 echo "Waiting for services to bind to ports..."
 sleep 5
 
-echo "=========================================="
-echo "      ACTIVE MICROSERVICE PORTS          "
-echo "=========================================="
 
-
-ss -tulpn | grep "dotnet"
-
-echo "=========================================="
 
 
 wait

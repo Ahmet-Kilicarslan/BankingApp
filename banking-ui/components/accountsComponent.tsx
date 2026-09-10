@@ -1,28 +1,14 @@
 "use client";
 import Image from "next/image";
 import Account from "../models/account"
+import {getBankLogo} from "../services/utils"
 
 
 
 export default function accountsComponent({accounts}: { accounts: Account[] }) {
 
 
-    function getBankLogo(bankName: string) {
-        switch (bankName) {
-            case "AkBank":
-                return "./logos/Akbank_logo_2025.svg"
-            case "Garanti":
-                return "./logos/Garanti_Bankasi_Logo.svg"
-            case "Vakıfbank":
-                return "./logos/Vakifbank-logo.svg"
-            case "Ziraat":
-                return "./logos/Ziraat_Bankasi_logo.svg"
-            default:
-                return "./logos/TCMB_Logo.svg"
-
-        }
-
-    }
+   
 
 
     return (
@@ -30,9 +16,9 @@ export default function accountsComponent({accounts}: { accounts: Account[] }) {
             {accounts.map(account => (
                 <div
                     key={account.id}
-                    className="w-72 bg-surface border border-border rounded-lg
-                        p-4 cursor-pointer transition-colors card-hover
-                        hover:border-text-muted flex flex-col gap-4"
+                        className="w-72 bg-surface border border-border rounded-lg
+                            p-4 cursor-pointer transition-colors card-hover
+                            hover:border-text-muted flex flex-col gap-4"
                 >
                     <div className="bg-text-primary p-2 rounded-md flex items-center gap-3">
                         <Image
