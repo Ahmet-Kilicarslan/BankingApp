@@ -127,7 +127,7 @@
   --color-wordle-present: var(--color-wordle-present);
   --color-wordle-absent: var(--color-wordle-absent);
 
-  -color-two: var(--color-two);
+  --color-two: var(--color-two);
   --color-four: var(--color-four);
   --color-eight: var(--color-eight);
   --color-sixteen: var(--color-sixteen);
