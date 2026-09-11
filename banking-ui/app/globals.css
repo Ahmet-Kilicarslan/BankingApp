@@ -18,6 +18,19 @@
   --color-wordle-correct: #82B99A;
   --color-wordle-present: #D6B56F;
   --color-wordle-absent: #625B6B;
+  
+  --color-two:#EEE4DA;
+  --color-four:#EDE0C8;
+  --color-eight:#F2B179;
+  --color-sixteen:#F59563;
+  --color-thirty-two:#F67C5F;
+  --color-sixty-four:#F65E3B;
+  --color-hundred-twenty-eight:#EDCF72;
+  --color-two-hundred-fifty-six:#EDCC61;
+  --color-five-hundred-twelve:#EDC850;
+  --color-ten-twenty-four:#EDC53F;
+  --color-twenty-forty-eight:#EDC22E
+  
 }
 [data-theme="charcoal-sand"] {
   --color-background: #1B2026;
@@ -109,9 +122,23 @@
   --color-accent: var(--color-accent);
   --color-success: var(--color-success);
   --color-danger: var(--color-danger);
+  
   --color-wordle-correct: var(--color-wordle-correct);
   --color-wordle-present: var(--color-wordle-present);
   --color-wordle-absent: var(--color-wordle-absent);
+
+  -color-two: var(--color-two);
+  --color-four: var(--color-four);
+  --color-eight: var(--color-eight);
+  --color-sixteen: var(--color-sixteen);
+  --color-thirty-two: var(--color-thirty-two);
+  --color-sixty-four: var(--color-sixty-four);
+  --color-hundred-twenty-eight: var(--color-hundred-twenty-eight);
+  --color-two-hundred-fifty-six: var(--color-two-hundred-fifty-six);
+  --color-five-hundred-twelve: var(--color-five-hundred-twelve);
+  --color-ten-twenty-four: var(--color-ten-twenty-four);
+  --color-twenty-forty-eight: var(--color-twenty-forty-eight);
+  
 }
 
 
